@@ -1,2 +1,0 @@
-I can't get Ubuntu to work :(
-But gitBash does!

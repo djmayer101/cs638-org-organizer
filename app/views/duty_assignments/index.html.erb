@@ -1,0 +1,21 @@
+<h1>Listing duty_assignments</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @duty_assignments.each do |duty_assignment| %>
+  <tr>
+    <td><%= link_to 'Show', duty_assignment %></td>
+    <td><%= link_to 'Edit', edit_duty_assignment_path(duty_assignment) %></td>
+    <td><%= link_to 'Destroy', duty_assignment, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Duty assignment', new_duty_assignment_path %>

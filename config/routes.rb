@@ -1,6 +1,18 @@
 Cs638OrgOrganizer::Application.routes.draw do
   resources :events
 
+  resources :duty_assignments
+
+  resources :position_assignments
+
+  resources :duties
+
+  resources :positions
+
+  resources :users
+
+  resources :events
+
   resources :duties
 
   resources :positions

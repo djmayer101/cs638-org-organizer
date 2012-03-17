@@ -2,7 +2,7 @@ class CreateDuties < ActiveRecord::Migration
   def change
     create_table :duties do |t|
       t.string :title
-      t.string :description
+      t.text :description
 
       t.timestamps
     end

@@ -11,13 +11,6 @@ Cs638OrgOrganizer::Application.routes.draw do
 
   resources :users
 
-  resources :events
-
-  resources :duties
-
-  resources :positions
-
-  resources :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

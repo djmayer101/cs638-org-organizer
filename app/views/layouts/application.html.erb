@@ -1,14 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cs638OrgOrganizer</title>
+  <title>KHK Org Organizer</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <html xmlns="http://www.w3.org/1999/xhtml">
+
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>KHK Org Organizer</title>
+
+
 </head>
 <body>
+<div id="nonFooter">
+<div id="menu-wrapper">
+	<div id="menu">
+		<ul>
+			<li><a style="background: none"><h1>KHK</h1></a></li>
+			<li><%= link_to 'Events', events_path %></li>
+			<li><%= link_to 'Duties', duties_path %></li>
+			<li><a href="#">Inventory</a></li>
+			<li><a href="#">Admin</a></li>
+			<li><%= link_to 'Users', users_path %></li>
+		</ul>
+	</div>
+	<!-- end #menu -->
 
-<%= yield %>
+</div>
 
+<div id="body">
+	<%= yield %>
+</div>
+
+</div>
+<div id="footer">
+	<p>Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+</div>
 </body>
 </html>

@@ -18,6 +18,7 @@ http://www.freecsstemplates.org
 Released for free under a Creative Commons Attribution 2.5 License
 */
 
+
 body {
 	margin: 0;
 	padding: 0;
@@ -25,8 +26,6 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	color: #3B3B3B;
-	/*height: 500px;*/
-	/*min-height: 100%*/
 }
 
 h1, h2, h3 {
@@ -80,6 +79,13 @@ a:hover {
 	margin: 0px auto;
 }
 
+/* nonFooter */
+
+#nonFooter {
+	position: relative;
+	min-height: 100%;
+}
+
 /* Logo */
 
 #logo {
@@ -96,7 +102,7 @@ a:hover {
 #logo h1 {
 	margin: 0px;
 	padding: 0px;
-	text-transform: lowercase;
+	text-transform: uppercase;
 	font-size: 3.8em;
 	color: #589DAC;
 }
@@ -118,44 +124,6 @@ a:hover {
 	background: none;
 	text-decoration: none;
 	color: #589DAC;
-}
-
-/* Search */
-
-#search {
-	width: 320px;
-	height: 60px;
-	padding: 0px;
-}
-
-#search form {
-	margin: 0px;
-	padding: 0px;
-}
-
-#search fieldset {
-	margin: 0;
-	padding: 0;
-	border: none;
-}
-
-#search-text {
-	width: 250px;
-	outline: none;
-	background: #F5F0E7;
-	border: 1px solid #D7D0C0;
-	padding: 10px;
-	text-transform: lowercase;
-	font: normal 14px Arial, Helvetica, sans-serif;
-	color: #454545;
-}
-
-#search-submit {
-	width: 62px;
-	height: 22px;
-	display: none;
-	border: none;
-	color: #FFFFFF;
 }
 
 /* Menu */
@@ -371,6 +339,7 @@ a:hover {
 	padding: 0px 0 15px 0;
 	background: #2F3739;
 	font-family: Arial, Helvetica, sans-serif;
+	position: relative;
 }
 
 #footer p {

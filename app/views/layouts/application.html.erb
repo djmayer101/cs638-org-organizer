@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cs638OrgOrganizer</title>
+  <title>KHK Org Organizer</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -10,17 +10,16 @@
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Variant Color by Free CSS Templates</title>
-<link href="http://fonts.googleapis.com/css?family=Arvo" rel="stylesheet" type="text/css" />
-<link href="http://fonts.googleapis.com/css?family=Coda:400,800" rel="stylesheet" type="text/css" />
-<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+<title>KHK Org Organizer</title>
+
 
 </head>
 <body>
-
+<div id="nonFooter">
 <div id="menu-wrapper">
 	<div id="menu">
 		<ul>
+			<li><a:hover style="none"><h1>KHK</h1></a></li>
 			<li><%= link_to 'Events', events_path %></li>
 			<li><%= link_to 'Duties', duties_path %></li>
 			<li><a href="#">Inventory</a></li>
@@ -31,20 +30,12 @@
 	<!-- end #menu -->
 
 </div>
-<div id="header-wrapper">
-	<div id="header">
-		<div id="logo">
-			<h1><a href="#">Variant Color </a></h1>
-			<p>Template design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a></p>
-		</div>
-	</div>
-</div>
 
 <div id="body">
 	<%= yield %>
 </div>
 
-
+</div>
 <div id="footer">
 	<p>Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
 </div>

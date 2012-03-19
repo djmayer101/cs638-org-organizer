@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Welcome to OrgOrganizer.com, <%= @user.first_name %></h1>
+    <p>
+      You have been signed up to join our system, 
+      your username is: <%= @user.login %>. and your password is <%=@user.password%><br/>
+    </p>
+    <p>
+      To login to the site, just follow this link: <%= @url %>. Once there you will be able to change 
+      your password and edit some details about yourself.
+    </p>
+    <p></p>
+  </body>
+</html>

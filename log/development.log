@@ -21983,3 +21983,86 @@ ActionView::Template::Error (undefined local variable or method `admin_path' for
   Rendered /home/khk/.rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (6.1ms)
   Rendered /home/khk/.rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
   Rendered /home/khk/.rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.2/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (21.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-03-20 15:48:36 -0500
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (1.1ms)[0m  [1mSELECT "events".* FROM "events" [0m
+  Rendered events/index.html.erb within layouts/application (47.7ms)
+Completed 200 OK in 209ms (Views: 205.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-03-20 15:48:38 -0500
+Served asset /application.css - 200 OK (140ms)
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2012-03-20 15:48:38 -0500
+Served asset /events.css - 200 OK (2ms)
+
+
+Started GET "/assets/duty_assignments.css?body=1" for 127.0.0.1 at 2012-03-20 15:48:38 -0500
+Served asset /duty_assignments.css - 200 OK (4ms)
+
+
+Started GET "/assets/duties.css?body=1" for 127.0.0.1 at 2012-03-20 15:48:38 -0500
+Served asset /duties.css - 200 OK (9ms)
+
+
+Started GET "/assets/position_assignments.css?body=1" for 127.0.0.1 at 2012-03-20 15:48:38 -0500
+Served asset /position_assignments.css - 200 OK (14ms)
+
+
+Started GET "/assets/positions.css?body=1" for 127.0.0.1 at 2012-03-20 15:48:38 -0500
+Served asset /positions.css - 200 OK (16ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-03-20 15:48:38 -0500
+Served asset /scaffolds.css - 200 OK (2ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-03-20 15:48:38 -0500
+Served asset /users.css - 200 OK (13ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-03-20 15:48:38 -0500
+Served asset /jquery.js - 200 OK (12ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-03-20 15:48:38 -0500
+Served asset /jquery_ujs.js - 200 OK (2ms)
+
+
+Started GET "/assets/duties.js?body=1" for 127.0.0.1 at 2012-03-20 15:48:39 -0500
+Served asset /duties.js - 200 OK (6ms)
+
+
+Started GET "/assets/duty_assignments.js?body=1" for 127.0.0.1 at 2012-03-20 15:48:39 -0500
+Served asset /duty_assignments.js - 200 OK (6ms)
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2012-03-20 15:48:39 -0500
+Served asset /events.js - 200 OK (7ms)
+
+
+Started GET "/assets/position_assignments.js?body=1" for 127.0.0.1 at 2012-03-20 15:48:39 -0500
+Served asset /position_assignments.js - 200 OK (12ms)
+
+
+Started GET "/assets/positions.js?body=1" for 127.0.0.1 at 2012-03-20 15:48:39 -0500
+Served asset /positions.js - 200 OK (8ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-03-20 15:48:39 -0500
+Served asset /users.js - 200 OK (5ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-03-20 15:48:39 -0500
+Served asset /application.js - 200 OK (42ms)
+
+
+Started GET "/assets/img01.gif" for 127.0.0.1 at 2012-03-20 15:48:39 -0500
+Served asset /img01.gif - 200 OK (18ms)
+
+
+Started GET "/assets/img02.gif" for 127.0.0.1 at 2012-03-20 15:48:41 -0500
+Served asset /img02.gif - 200 OK (5ms)

@@ -1,14 +1,20 @@
 
-
-<br />
 <iframe src="https://www.google.com/calendar/embed?src=cs638khk%40gmail.com&ctz=America/Chicago" 
 			style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 <br />
+<br />
+
 <h1>Listing events</h1>
+
 <table>
   <tr>
     <th>Title</th>
     <th>Description</th>
+    <th>Start date</th>
+ <!--   <th>End date</th>*/
+    <th>Formality lvl</th>
+    <th>Owner</th>
+    <th>Location</th> -->
     <th></th>
     <th></th>
     <th></th>
@@ -18,6 +24,11 @@
   <tr>
     <td><%= event.title %></td>
     <td><%= event.description %></td>
+    <td><%= event.start_date %></td>
+ <!--     <td><%= event.end_date %></td>
+    <td><%= event.formality_lvl %></td>
+    <td><%= event.owner %></td>
+    <td><%= event.location %></td> -->
     <td><%= link_to 'Show', event %></td>
     <td><%= link_to 'Edit', edit_event_path(event) %></td>
     <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>

@@ -11,13 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120317215820) do
+
+ActiveRecord::Schema.define(:version => 20120320222113) do
 
   create_table "duties", :force => true do |t|
     t.string   "title"
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.date     "deadline"
+    t.integer  "assignee"
+    t.integer  "assigner"
+    t.string   "penalty"
+    t.boolean  "confirmation"
   end
 
   create_table "duty_assignments", :force => true do |t|
@@ -28,8 +34,13 @@ ActiveRecord::Schema.define(:version => 20120317215820) do
   create_table "events", :force => true do |t|
     t.string   "title"
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string   "formality_lvl"
+    t.integer  "owner"
+    t.string   "location"
   end
 
   create_table "position_assignments", :force => true do |t|

@@ -21224,3 +21224,1061 @@ Migrating to CreateEvents (20120316205700)
  AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
  ORDER BY i.relname
 [0m
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120316205513)
+Migrating to CreatePositions (20120316205602)
+Migrating to CreateDuties (20120316205618)
+Migrating to CreatePositionAssignments (20120316205634)
+Migrating to CreateDutyAssignments (20120316205646)
+Migrating to CreateEvents (20120316205700)
+  [1m[35m (1.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36mPK and serial sequence (28.9ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"duties"'::regclass
+[0m
+  [1m[35m (5.1ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'duties'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mPK and serial sequence (4.9ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"duty_assignments"'::regclass
+[0m
+  [1m[35m (2.8ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'duty_assignments'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mPK and serial sequence (4.5ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"position_assignments"'::regclass
+[0m
+  [1m[35m (2.5ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'position_assignments'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mPK and serial sequence (4.7ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"positions"'::regclass
+[0m
+  [1m[35m (2.5ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'positions'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mPK and serial sequence (4.5ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"users"'::regclass
+[0m
+  [1m[35m (2.5ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36m (56.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (6.4ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'schema_migrations'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36m (81.3ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.8ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreateUsers (20120316205513)
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35m (91.7ms)[0m  CREATE TABLE "users" ("id" serial primary key, "first_name" character varying(255), "last_name" character varying(255), "password" character varying(255), "email" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120316205513')[0m
+  [1m[35m (24.1ms)[0m  COMMIT
+Migrating to CreatePositions (20120316205602)
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35m (114.7ms)[0m  CREATE TABLE "positions" ("id" serial primary key, "title" character varying(255), "description" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120316205602')[0m
+  [1m[35m (23.4ms)[0m  COMMIT
+Migrating to CreateDuties (20120316205618)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (117.7ms)[0m  CREATE TABLE "duties" ("id" serial primary key, "title" character varying(255), "description" text, "deadline" date, "assignee" integer, "assigner" integer, "penalty" character varying(255), "confirmation" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120316205618')[0m
+  [1m[35m (21.1ms)[0m  COMMIT
+Migrating to CreatePositionAssignments (20120316205634)
+  [1m[36m (0.7ms)[0m  [1mBEGIN[0m
+  [1m[35m (62.2ms)[0m  CREATE TABLE "position_assignments" ("id" serial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120316205634')[0m
+  [1m[35m (7.5ms)[0m  COMMIT
+Migrating to CreateDutyAssignments (20120316205646)
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35m (52.2ms)[0m  CREATE TABLE "duty_assignments" ("id" serial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120316205646')[0m
+  [1m[35m (20.5ms)[0m  COMMIT
+Migrating to CreateEvents (20120316205700)
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35m (96.7ms)[0m  CREATE TABLE "events" ("id" serial primary key, "title" character varying(255), "description" text, "start_date" timestamp, "end_date" timestamp, "formality_lvl" character varying(255), "owner" integer, "location" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120316205700')[0m
+  [1m[35m (30.9ms)[0m  COMMIT
+  [1m[36m (1.4ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35mPK and serial sequence (10.9ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"duties"'::regclass
+
+  [1m[36m (2.4ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'duties'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+[0m
+  [1m[35mPK and serial sequence (4.8ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"duty_assignments"'::regclass
+
+  [1m[36m (4.0ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'duty_assignments'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+[0m
+  [1m[35mPK and serial sequence (4.6ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"events"'::regclass
+
+  [1m[36m (2.7ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'events'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+[0m
+  [1m[35mPK and serial sequence (4.7ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"position_assignments"'::regclass
+
+  [1m[36m (2.6ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'position_assignments'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+[0m
+  [1m[35mPK and serial sequence (4.7ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"positions"'::regclass
+
+  [1m[36m (2.7ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'positions'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+[0m
+  [1m[35mPK and serial sequence (4.7ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"users"'::regclass
+
+  [1m[36m (2.7ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+[0m
+
+
+Started GET "/events" for 127.0.0.1 at 2012-03-19 22:03:35 -0500
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (1.2ms)[0m  [1mSELECT "events".* FROM "events" [0m
+  Rendered events/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 49ms (Views: 46.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /application.css - 304 Not Modified (45ms)
+
+
+Started GET "/assets/duty_assignments.css?body=1" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /duty_assignments.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/position_assignments.css?body=1" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /position_assignments.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/duties.css?body=1" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /duties.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /events.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/positions.css?body=1" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /positions.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /scaffolds.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /jquery.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /users.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/duties.js?body=1" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /duties.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/duty_assignments.js?body=1" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /duty_assignments.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /events.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/position_assignments.js?body=1" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /position_assignments.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/positions.js?body=1" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /positions.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /users.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /application.js - 304 Not Modified (30ms)
+
+
+Started GET "/assets/img01.gif" for 127.0.0.1 at 2012-03-19 22:03:36 -0500
+Served asset /img01.gif - 304 Not Modified (1ms)
+
+
+Started GET "/assets/img02.gif" for 127.0.0.1 at 2012-03-19 22:05:34 -0500
+Served asset /img02.gif - 304 Not Modified (1ms)
+
+
+Started GET "/duties" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Processing by DutiesController#index as HTML
+  [1m[35mDuty Load (0.9ms)[0m  SELECT "duties".* FROM "duties" 
+  Rendered duties/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 18ms (Views: 15.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /application.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/position_assignments.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /position_assignments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /events.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/duties.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /duties.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/duty_assignments.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /duty_assignments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/positions.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /positions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /jquery.js - 304 Not Modified (10ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/duties.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /duties.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/duty_assignments.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /duty_assignments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /events.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/position_assignments.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /position_assignments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/positions.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /positions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/img01.gif" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /img01.gif - 304 Not Modified (0ms)
+
+
+Started GET "/assets/img02.gif" for 127.0.0.1 at 2012-03-19 22:05:35 -0500
+Served asset /img02.gif - 304 Not Modified (0ms)
+
+
+Started GET "/duties/new" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Processing by DutiesController#new as HTML
+  Rendered duties/_form.html.erb (6.4ms)
+  Rendered duties/new.html.erb within layouts/application (28.8ms)
+Completed 200 OK in 47ms (Views: 37.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Served asset /application.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/duties.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Served asset /duties.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/duty_assignments.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Served asset /duty_assignments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Served asset /events.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/position_assignments.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Served asset /position_assignments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/positions.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Served asset /positions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Served asset /jquery.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/duties.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Served asset /duties.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/duty_assignments.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Served asset /duty_assignments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Served asset /events.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/position_assignments.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Served asset /position_assignments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/positions.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Served asset /positions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:37 -0500
+Served asset /application.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/img01.gif" for 127.0.0.1 at 2012-03-19 22:05:38 -0500
+Served asset /img01.gif - 304 Not Modified (0ms)
+
+
+Started GET "/assets/img02.gif" for 127.0.0.1 at 2012-03-19 22:05:38 -0500
+Served asset /img02.gif - 304 Not Modified (0ms)
+
+
+Started GET "/duties" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Processing by DutiesController#index as HTML
+  [1m[36mDuty Load (1.0ms)[0m  [1mSELECT "duties".* FROM "duties" [0m
+  Rendered duties/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 32ms (Views: 29.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /application.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/duties.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /duties.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /events.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/duty_assignments.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /duty_assignments.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/position_assignments.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /position_assignments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/positions.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /positions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /jquery.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/duty_assignments.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /duty_assignments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/duties.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /duties.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/position_assignments.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /position_assignments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /events.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/positions.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /positions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /application.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/img01.gif" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /img01.gif - 304 Not Modified (0ms)
+
+
+Started GET "/assets/img02.gif" for 127.0.0.1 at 2012-03-19 22:05:40 -0500
+Served asset /img02.gif - 304 Not Modified (0ms)
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120316205513)
+Migrating to CreatePositions (20120316205602)
+Migrating to CreateDuties (20120316205618)
+Migrating to CreatePositionAssignments (20120316205634)
+Migrating to CreateDutyAssignments (20120316205646)
+Migrating to CreateEvents (20120316205700)
+  [1m[35m (0.9ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36mPK and serial sequence (16.6ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"duties"'::regclass
+[0m
+  [1m[35m (5.3ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'duties'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mPK and serial sequence (4.5ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"duty_assignments"'::regclass
+[0m
+  [1m[35m (3.1ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'duty_assignments'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mPK and serial sequence (5.1ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"events"'::regclass
+[0m
+  [1m[35m (2.6ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'events'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mPK and serial sequence (4.7ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"position_assignments"'::regclass
+[0m
+  [1m[35m (3.0ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'position_assignments'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mPK and serial sequence (4.7ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"positions"'::regclass
+[0m
+  [1m[35m (2.6ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'positions'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+  [1m[36mPK and serial sequence (4.5ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"users"'::regclass
+[0m
+  [1m[35m (2.6ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, pg_get_indexdef(d.indexrelid), t.oid
+ FROM pg_class t
+ INNER JOIN pg_index d ON t.oid = d.indrelid
+ INNER JOIN pg_class i ON d.indexrelid = i.oid
+ WHERE i.relkind = 'i'
+ AND d.indisprimary = 'f'
+ AND t.relname = 'users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname = ANY (current_schemas(false)) )
+ ORDER BY i.relname
+
+
+
+Started GET "/duties" for 127.0.0.1 at 2012-03-19 22:06:46 -0500
+Processing by DutiesController#index as HTML
+  [1m[35mDuty Load (0.6ms)[0m  SELECT "duties".* FROM "duties" 
+  Rendered duties/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 20ms (Views: 17.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:46 -0500
+Served asset /application.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/duties.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:46 -0500
+Served asset /duties.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/duty_assignments.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:46 -0500
+Served asset /duty_assignments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:46 -0500
+Served asset /events.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/positions.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:46 -0500
+Served asset /positions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/position_assignments.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:46 -0500
+Served asset /position_assignments.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:46 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:47 -0500
+Served asset /users.css - 304 Not Modified (31ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:47 -0500
+Served asset /jquery.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:47 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/duties.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:47 -0500
+Served asset /duties.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/duty_assignments.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:47 -0500
+Served asset /duty_assignments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:47 -0500
+Served asset /events.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/position_assignments.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:47 -0500
+Served asset /position_assignments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:47 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:47 -0500
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/positions.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:47 -0500
+Served asset /positions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/img01.gif" for 127.0.0.1 at 2012-03-19 22:06:47 -0500
+Served asset /img01.gif - 304 Not Modified (0ms)
+
+
+Started GET "/duties/new" for 127.0.0.1 at 2012-03-19 22:06:48 -0500
+Processing by DutiesController#new as HTML
+  Rendered duties/_form.html.erb (8.4ms)
+  Rendered duties/new.html.erb within layouts/application (9.3ms)
+Completed 200 OK in 24ms (Views: 17.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /application.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/duties.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /duties.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/position_assignments.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /position_assignments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /events.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/duty_assignments.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /duty_assignments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/positions.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /positions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /jquery.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/duties.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /duties.js - 304 Not Modified (26ms)
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /events.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/duty_assignments.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /duty_assignments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/position_assignments.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /position_assignments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/positions.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /positions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/img01.gif" for 127.0.0.1 at 2012-03-19 22:06:49 -0500
+Served asset /img01.gif - 304 Not Modified (0ms)
+
+
+Started GET "/assets/img02.gif" for 127.0.0.1 at 2012-03-19 22:06:58 -0500
+Served asset /img02.gif - 304 Not Modified (0ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.7ms)[0m  [1mSELECT "events".* FROM "events" [0m
+  Rendered events/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 10ms (Views: 8.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /application.css - 304 Not Modified (11ms)
+
+
+Started GET "/assets/duties.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /duties.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/position_assignments.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /position_assignments.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/events.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /events.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/positions.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /positions.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/duty_assignments.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /duty_assignments.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /jquery.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/duty_assignments.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /duty_assignments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/duties.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /duties.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/events.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /events.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/position_assignments.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /position_assignments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/positions.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /positions.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/img01.gif" for 127.0.0.1 at 2012-03-19 22:06:59 -0500
+Served asset /img01.gif - 304 Not Modified (0ms)

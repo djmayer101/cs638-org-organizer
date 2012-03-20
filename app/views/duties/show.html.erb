@@ -10,6 +10,31 @@
   <%= @duty.description %>
 </p>
 
+<p>
+  <b>Deadline:</b>
+  <%= @duty.deadline %>
+</p>
+
+<p>
+  <b>Assignee:</b>
+  <%= @duty.assignee %>
+</p>
+
+<p>
+  <b>Assigner:</b>
+  <%= @duty.assigner %>
+</p>
+
+<p>
+  <b>Penalty:</b>
+  <%= @duty.penalty %>
+</p>
+
+<p>
+  <b>Confirmation:</b>
+  <%= @duty.confirmation %>
+</p>
+
 
 <%= link_to 'Edit', edit_duty_path(@duty) %> |
 <%= link_to 'Back', duties_path %>

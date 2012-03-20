@@ -21960,3 +21960,26 @@ Served asset /application.js - 304 Not Modified (0ms)
 
 Started GET "/assets/img01.gif" for 127.0.0.1 at 2012-03-19 22:55:20 -0500
 Served asset /img01.gif - 304 Not Modified (3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-03-20 11:00:07 -0500
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (17.8ms)[0m  [1mSELECT "events".* FROM "events" [0m
+  Rendered events/index.html.erb within layouts/application (55.5ms)
+Completed 500 Internal Server Error in 3520ms
+
+ActionView::Template::Error (undefined local variable or method `admin_path' for #<#<Class:0x00000002692510>:0x000000026b1708>):
+    23: 			<li><%= link_to 'Events', events_path %></li>
+    24: 			<li><%= link_to 'Duties', duties_path %></li>
+    25: 			<li><a href="#">Inventory</a></li>
+    26: 			<li><%= link_to 'Admin', admin_path %></li>
+    27: 			<li><%= link_to 'Users', users_path %></li>
+    28: 		</ul>
+    29: 	</div>
+  app/views/layouts/application.html.erb:26:in `_app_views_layouts_application_html_erb__375269133862976463_27183720'
+  app/controllers/events_controller.rb:7:in `index'
+
+
+  Rendered /home/khk/.rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (6.1ms)
+  Rendered /home/khk/.rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
+  Rendered /home/khk/.rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.2/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (21.0ms)

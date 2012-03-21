@@ -33,7 +33,7 @@ h1, h2, h3 {
 	padding: 0px;
 	letter-spacing: -2px;
 	text-transform: uppercase;
-	font-family: 'Coda', cursive;
+	font-family: Arial, Helvetica, sans-serif;
 	font-weight: normal;
 	color: #3B3B3B;
 }
@@ -111,7 +111,7 @@ a:hover {
 	margin: 0px;
 	padding: 0px;
 	text-transform: uppercase;
-	font-family: 'Coda', cursive;
+	font-family: Arial, Helvetica, sans-serif;
 	color: #3B3B3B;
 }
 
@@ -129,14 +129,15 @@ a:hover {
 /* Menu */
 
 #menu-wrapper {
+	/*position: fixed;*/
 	overflow: hidden;
-	height: 55px;
+	height: 35px;
 	background: url(/assets/img01.gif) repeat-x left top;
 }
 
 #menu {
 	width: 1000px;
-	height: 55px;
+	height: 35px;
 	margin: 0px auto;
 	padding: 0px;
 }
@@ -156,12 +157,12 @@ a:hover {
 #menu a {
 	display: block;
 	letter-spacing: 1px;
-	line-height: 55px;
-	padding: 0px 30px;
+	line-height: 35px;
+	padding: 0px 35px;
 	text-decoration: none;
 	text-align: center;
 	text-transform: uppercase;
-	font-family: 'Coda', cursive;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	font-weight: normal;
 	color: #3B3B3B;

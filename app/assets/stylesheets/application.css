@@ -79,12 +79,17 @@ a:hover {
 	margin: 0px auto;
 }
 
-/* nonFooter */
-
-#nonFooter {
-	position: relative;
-	min-height: 100%;
+ul.hmenu {
+  list-style: none;	
+  margin: 0 0 2em;
+  padding: 0;
+  background: url(/assets/img01.gif) repeat-x left top;
 }
+
+ul.hmenu li {
+  display: inline;  
+}
+
 
 /* Logo */
 
@@ -178,6 +183,7 @@ a:hover {
 
 #menu .current_page_item a {
 }
+
 
 /* Page */
 

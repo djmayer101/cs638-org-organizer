@@ -25,6 +25,10 @@
 			<li><a href="#">Inventory</a></li>
 			<li><a href="#">Admin</a></li>
 			<li><%= link_to 'Users', users_path %></li>
+			
+		</ul>
+		<ul class="hmenu">
+  			<%= render 'devise/menu/login_items' %>
 		</ul>
 	</div>
 	<!-- end #menu -->
@@ -32,6 +36,9 @@
 </div>
 
 <div id="body">
+	<ul class="hmenu">
+  <%= render 'devise/menu/login_items' %>
+	</ul>
 	<br />
 	<br />
 	<br />

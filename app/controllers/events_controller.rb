@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   # GET /events
   # GET /events.json
+#  if current_user.try(:admin?)
   def index
     @events = Event.all
 
@@ -80,4 +81,5 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  #end
 end

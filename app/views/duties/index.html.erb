@@ -14,7 +14,6 @@
     <th></th>
     <th></th>
   </tr>
-<!-- Filter code will need to change each to userID once this is set up -->
 <% @duties.each do |duty| %>
   <tr>
     <td><%= duty.title %></td>
@@ -34,3 +33,19 @@
 <br />
 
 <%= link_to 'New Duty', new_duty_path %>
+<div id = "filter_duties_checkboxlist">
+<br />
+Filter By:
+<br />
+
+<%= label_tag 'Assigned to me'%>
+<%= check_box_tag "filter_duties[0]" %><br />
+<%= label_tag 'Assigned to others'%>
+<%= check_box_tag "filter_duties[1]" %><br />
+<%= label_tag 'Active'%>
+<%= check_box_tag "filter_duties[2]" %><br />
+<%= label_tag 'Complete'%>
+<%= check_box_tag "filter_duties[3]" %><br />
+<%= label_tag 'Failed'%>
+<%= check_box_tag "filter_duties[4]" %><br />
+</div>

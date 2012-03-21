@@ -1,3 +1,6 @@
 class Duty < ActiveRecord::Base
-#Not sure what to put here exactly, Jim had a better understanding than I did
+  belongs_to :user;
+  validates :title, :penalty, :presence=> true;
+  validates :assignee, :assigner, :numericality => true;
+  
 end

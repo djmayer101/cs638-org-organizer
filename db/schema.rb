@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20120321221424) do
 
   create_table "duties", :force => true do |t|
     t.string   "title"
-    t.string   "description"
+    t.text     "description"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.date     "deadline"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20120321221424) do
 
   create_table "events", :force => true do |t|
     t.string   "title"
-    t.string   "description"
+    t.text     "description"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.datetime "start_date"

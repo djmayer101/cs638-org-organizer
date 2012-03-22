@@ -1,5 +1,5 @@
 class Duty < ActiveRecord::Base
-  belongs_to :user;
+  has_many :user, :through => :duty_assignments
   validates :title, :penalty, :presence=> true;
   validates :assignee, :assigner, :numericality => true;
   

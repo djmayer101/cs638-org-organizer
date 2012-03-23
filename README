@@ -1,0 +1,10 @@
+To start our app we have our directory publicly listed on Google Code.
+The link to get our repo is https://code.google.com/p/cs638-org-organizer/
+To run our app make sure Rails 3.2.2 and Ruby 1.9.3 are installed on the local machine
+We also require a postgresql server version at least 9.1.
+Way to get our app running:
+bundle install
+rake db:create
+rake db:migrate
+rails s (our server is defaulted on http://0.0.0.0:3000
+Tests can be run using the command ‘bundle exec rssec spec/controllers’

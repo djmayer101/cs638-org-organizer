@@ -27,10 +27,13 @@
     <%= f.label :assignee %><br />
     <%= f.number_field :assignee %>
   </div>
+  	<%= f.hidden_field :assigner, :value => current_user.id %>
+  <!--
   <div class="field">
     <%= f.label :assigner %><br />
     <%= f.number_field :assigner %>
   </div>
+  -->
   <div class="field">
     <%= f.label :penalty %><br />
     <%= f.text_field :penalty %>

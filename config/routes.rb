@@ -13,7 +13,11 @@ Cs638OrgOrganizer::Application.routes.draw do
 
   resources :users
 
-
+  resources :admin do |admin|
+    admin.resources :users
+    admin.resources :positions
+    
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

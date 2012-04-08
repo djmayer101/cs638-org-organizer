@@ -47,6 +47,33 @@ class EventsController < ApplicationController
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
+        
+        # add event to google cal        
+        service = GCal4Ruby::Service.new
+        service.authenticate("cs638khk", "KHKorgFTW")
+        #cal_id = "cs638khk@gmail.com"
+        cal_id = "tc3e71d7t5jm9a2q52j9tqepqo@group.calendar.google.com"
+        
+        cal = GCal4Ruby::Calendar.find(service, {:id => cal_id})
+        events = cal1.events
+
+          
+        #event_g = GCal4Ruby::Event.new(service, {:calendar => cal, :title => "Meeting", :start => Time.parse("4-16-2012 at 12:30 PM"), :end => Time.parse("4-16-2012 at 1:30 PM"), :where => "The House"})
+        event_g = GCal4Ruby::Event.new(service)
+        event_g.title = "test title"
+        event_g.content = "test content"
+        event_g.where = "my house"
+        event_g.start_time = Time.now
+        event_g.end_time = 2.hours.from_now
+       # event_g.all_day = false
+        event_g.calendar = cal 
+        
+        event_g.save
+
+        cal1.save
+
+        
+        
       else
         format.html { render action: "new" }
         format.json { render json: @event.errors, status: :unprocessable_entity }

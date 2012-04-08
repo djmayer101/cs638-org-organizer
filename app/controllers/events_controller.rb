@@ -73,9 +73,13 @@ class EventsController < ApplicationController
         event_g.save
         cal.save
         
-      #  puts "\n\n\n\n\n\n\n\nevent id" + event_g.id + "\n\n\n\n\n"
+        #puts "\n\n\n\n\n\n\n\nevent id" + event_g.id + "\n\n\n\n\n"
         
-        #@event.update_attributes(params[:event])
+        @event.event_id = event_g.id
+        @event.update_attributes(params[:event])
+        @event.save
+        
+        puts "\n\n\n\n\n\n\n\nevent id" + @event.event_id + "\n\n\n\n\n"
 
       else
         format.html { render action: "new" }
@@ -135,20 +139,18 @@ class EventsController < ApplicationController
     #connect to calendar
     cal = GCal4Ruby::Calendar.find(service, {:id => @@cal_id})
     
-    event_g = GCal4Ruby::Event.find(service, {:title => @event.title}).first
+    #find event to delete
+    event_g = GCal4Ruby::Event.find(service, {:id => @event.event_id})
     
-    if false
     if event_g.title.nil?
-      puts "Couldn't find"
+      puts "Error:  couldn't find event id: " + @event.event_id
+      puts "Was it manually deleted from calendar?"
     else
       event_g.delete
       cal.save
-      @event.destroy
     end  
-    end
-    
+    #delete locally either way
     @event.destroy
-    
 
     respond_to do |format|
       format.html { redirect_to events_url }

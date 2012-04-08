@@ -1,4 +1,9 @@
 class EventsController < ApplicationController
+  
+  #specify which calendar to use
+  @@cal_id = "cs638khk@gmail.com"    #actual
+  #@@cal_id = "tc3e71d7t5jm9a2q52j9tqepqo@group.calendar.google.com"   #dev
+        
   # GET /events
   # GET /events.json
 #  if current_user.try(:admin?)
@@ -45,21 +50,17 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render json: @event, status: :created, location: @event }
-        
         # create session with Google        
         service = GCal4Ruby::Service.new
         service.authenticate("cs638khk", "KHKorgFTW")
-        
-        #specify which calendar to use
-        #cal_id = "cs638khk@gmail.com"    #actual
-        cal_id = "tc3e71d7t5jm9a2q52j9tqepqo@group.calendar.google.com"   #dev
-        
+
         #connect to calendar
-        cal = GCal4Ruby::Calendar.find(service, {:id => cal_id})
+        cal = GCal4Ruby::Calendar.find(service, {:id => @@cal_id})
         
-        #create and add event 
+        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.json { render json: @event, status: :created, location: @event }
+        
+        #create and add event to calendar
         event_g = GCal4Ruby::Event.new(service)
         event_g.title = @event.title
         event_g.content = @event.description
@@ -86,8 +87,32 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
+        # create session with Google        
+        service = GCal4Ruby::Service.new
+        service.authenticate("cs638khk", "KHKorgFTW")
+        
+        #connect to calendar
+        cal = GCal4Ruby::Calendar.find(service, {:id => @@cal_id})
+        
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
+        
+        
+        if false
+        event_g = GCal4Ruby::Event.find(service, {:title => @event.title}).first
+        #create and add event 
+        #event_g = GCal4Ruby::Event.new(service)
+        event_g.title = @event.title
+        event_g.content = @event.description
+        event_g.where = @event.location
+        event_g.start_time = @event.start_date
+        event_g.end_time = @event.end_date
+        event_g.calendar = cal 
+        
+        #remember to save
+        event_g.save
+        cal.save
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -99,7 +124,27 @@ class EventsController < ApplicationController
   # DELETE /events/1.json
   def destroy
     @event = Event.find(params[:id])
+    # create session with Google        
+    service = GCal4Ruby::Service.new
+    service.authenticate("cs638khk", "KHKorgFTW")
+        
+    #connect to calendar
+    cal = GCal4Ruby::Calendar.find(service, {:id => @@cal_id})
+    
+    event_g = GCal4Ruby::Event.find(service, {:title => @event.title}).first
+    
+    if false
+    if event_g.title.nil?
+      puts "Couldn't find"
+    else
+      event_g.delete
+      cal.save
+      @event.destroy
+    end  
+    end
+    
     @event.destroy
+    
 
     respond_to do |format|
       format.html { redirect_to events_url }

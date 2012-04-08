@@ -72,6 +72,10 @@ class EventsController < ApplicationController
         #remember to save
         event_g.save
         cal.save
+        
+      #  puts "\n\n\n\n\n\n\n\nevent id" + event_g.id + "\n\n\n\n\n"
+        
+        #@event.update_attributes(params[:event])
 
       else
         format.html { render action: "new" }

@@ -51,11 +51,14 @@ class EventsController < ApplicationController
         # create session with Google        
         service = GCal4Ruby::Service.new
         service.authenticate("cs638khk", "KHKorgFTW")
+        
         #specify which calendar to use
-        #cal_id = "cs638khk@gmail.com"
-        cal_id = "tc3e71d7t5jm9a2q52j9tqepqo@group.calendar.google.com"
+        #cal_id = "cs638khk@gmail.com"    #actual
+        cal_id = "tc3e71d7t5jm9a2q52j9tqepqo@group.calendar.google.com"   #dev
+        
         #connect to calendar
         cal = GCal4Ruby::Calendar.find(service, {:id => cal_id})
+        
         #create and add event 
         event_g = GCal4Ruby::Event.new(service)
         event_g.title = @event.title
@@ -64,6 +67,7 @@ class EventsController < ApplicationController
         event_g.start_time = @event.start_date
         event_g.end_time = @event.end_date
         event_g.calendar = cal 
+        
         #remember to save
         event_g.save
         cal.save

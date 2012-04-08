@@ -73,13 +73,9 @@ class EventsController < ApplicationController
         event_g.save
         cal.save
         
-        #puts "\n\n\n\n\n\n\n\nevent id" + event_g.id + "\n\n\n\n\n"
-        
         @event.event_id = event_g.id
         @event.update_attributes(params[:event])
         @event.save
-        
-        puts "\n\n\n\n\n\n\n\nevent id" + @event.event_id + "\n\n\n\n\n"
 
       else
         format.html { render action: "new" }
@@ -105,22 +101,26 @@ class EventsController < ApplicationController
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
         
+        #find event to delete
+        event_g = GCal4Ruby::Event.find(service, {:id => @event.event_id})
         
-        if false
-        event_g = GCal4Ruby::Event.find(service, {:title => @event.title}).first
-        #create and add event 
-        #event_g = GCal4Ruby::Event.new(service)
-        event_g.title = @event.title
-        event_g.content = @event.description
-        event_g.where = @event.location
-        event_g.start_time = @event.start_date
-        event_g.end_time = @event.end_date
-        event_g.calendar = cal 
+        if event_g.title.nil?
+          puts "Error:  couldn't find event id: " + @event.event_id
+          puts "Was it manually deleted from calendar?"
+        else
+          #update event 
+          event_g.title = @event.title
+          event_g.content = @event.description
+          event_g.where = @event.location
+          event_g.start_time = @event.start_date
+          event_g.end_time = @event.end_date
+          event_g.calendar = cal 
         
-        #remember to save
-        event_g.save
-        cal.save
+          #remember to save
+          event_g.save
+          cal.save
         end
+        
       else
         format.html { render action: "edit" }
         format.json { render json: @event.errors, status: :unprocessable_entity }

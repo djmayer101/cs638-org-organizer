@@ -91,22 +91,43 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
+        #OK to update locally first since event_id doesn't change
+        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.json { head :no_content }
+        
         # create session with Google        
         service = GCal4Ruby::Service.new
         service.authenticate("cs638khk", "KHKorgFTW")
         
         #connect to calendar
         cal = GCal4Ruby::Calendar.find(service, {:id => @@cal_id})
-        
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { head :no_content }
-        
-        #find event to delete
+
+        #find event to update
         event_g = GCal4Ruby::Event.find(service, {:id => @event.event_id})
         
+        #this is broken: google events are kept after being deleted so need to 
+        #find a way to see if event was deleted manually
         if event_g.title.nil?
           puts "Error:  couldn't find event id: " + @event.event_id
           puts "Was it manually deleted from calendar?"
+          
+          #create new?
+          event_g = GCal4Ruby::Event.new(service)
+          event_g.title = @event.title
+          event_g.content = @event.description
+          event_g.where = @event.location
+          event_g.start_time = @event.start_date
+          event_g.end_time = @event.end_date
+          event_g.calendar = cal 
+          
+          #remember to save
+          event_g.save
+          cal.save
+        
+          @event.event_id = event_g.id
+          @event.update_attributes(params[:event])
+          @event.save
+          
         else
           #update event 
           event_g.title = @event.title
@@ -132,6 +153,7 @@ class EventsController < ApplicationController
   # DELETE /events/1.json
   def destroy
     @event = Event.find(params[:id])
+    
     # create session with Google        
     service = GCal4Ruby::Service.new
     service.authenticate("cs638khk", "KHKorgFTW")
@@ -142,7 +164,9 @@ class EventsController < ApplicationController
     #find event to delete
     event_g = GCal4Ruby::Event.find(service, {:id => @event.event_id})
     
-    if event_g.title.nil?
+    #this is broken: google events are kept after being deleted so need to 
+    #find a way to see if event was deleted manually
+    if event_g.title.casecmp("cancelled")==0
       puts "Error:  couldn't find event id: " + @event.event_id
       puts "Was it manually deleted from calendar?"
     else

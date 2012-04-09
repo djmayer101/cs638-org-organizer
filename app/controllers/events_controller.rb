@@ -3,6 +3,13 @@ class EventsController < ApplicationController
   #specify which calendar to use
   @@cal_id = "cs638khk@gmail.com"    #actual
   #@@cal_id = "tc3e71d7t5jm9a2q52j9tqepqo@group.calendar.google.com"   #dev
+
+	# create session with Google        
+  @@service = GCal4Ruby::Service.new
+  @@service.authenticate("cs638khk", "KHKorgFTW")
+        
+  #connect to calendar
+  @@cal = GCal4Ruby::Calendar.find(@@service, {:id => @@cal_id})
         
   # GET /events
   # GET /events.json
@@ -50,28 +57,21 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        # create session with Google        
-        service = GCal4Ruby::Service.new
-        service.authenticate("cs638khk", "KHKorgFTW")
-
-        #connect to calendar
-        cal = GCal4Ruby::Calendar.find(service, {:id => @@cal_id})
-        
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
         
         #create and add event to calendar
-        event_g = GCal4Ruby::Event.new(service)
+        event_g = GCal4Ruby::Event.new(@@service)
         event_g.title = @event.title
         event_g.content = @event.description
         event_g.where = @event.location
         event_g.start_time = @event.start_date
         event_g.end_time = @event.end_date
-        event_g.calendar = cal 
+        event_g.calendar = @@cal 
         
         #remember to save
         event_g.save
-        cal.save
+        @@cal.save
         
         @event.event_id = event_g.id
         @event.update_attributes(params[:event])
@@ -95,39 +95,33 @@ class EventsController < ApplicationController
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
         
-        # create session with Google        
-        service = GCal4Ruby::Service.new
-        service.authenticate("cs638khk", "KHKorgFTW")
-        
-        #connect to calendar
-        cal = GCal4Ruby::Calendar.find(service, {:id => @@cal_id})
-
         #find event to update
-        event_g = GCal4Ruby::Event.find(service, {:id => @event.event_id})
+        event_g = GCal4Ruby::Event.find(@@service, {:id => @event.event_id})
         
         #this is broken: google events are kept after being deleted so need to 
         #find a way to see if event was deleted manually
-        if event_g.title.nil?
+        if event_g.nil?
           puts "Error:  couldn't find event id: " + @event.event_id
           puts "Was it manually deleted from calendar?"
           
+					if false
           #create new?
-          event_g = GCal4Ruby::Event.new(service)
+          event_g = GCal4Ruby::Event.new(@@service)
           event_g.title = @event.title
           event_g.content = @event.description
           event_g.where = @event.location
           event_g.start_time = @event.start_date
           event_g.end_time = @event.end_date
-          event_g.calendar = cal 
+          event_g.calendar = @@cal 
           
           #remember to save
           event_g.save
-          cal.save
+          @@cal.save
         
           @event.event_id = event_g.id
           @event.update_attributes(params[:event])
           @event.save
-          
+          end
         else
           #update event 
           event_g.title = @event.title
@@ -135,11 +129,11 @@ class EventsController < ApplicationController
           event_g.where = @event.location
           event_g.start_time = @event.start_date
           event_g.end_time = @event.end_date
-          event_g.calendar = cal 
+          event_g.calendar = @@cal 
         
           #remember to save
           event_g.save
-          cal.save
+          @@cal.save
         end
         
       else
@@ -154,15 +148,8 @@ class EventsController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     
-    # create session with Google        
-    service = GCal4Ruby::Service.new
-    service.authenticate("cs638khk", "KHKorgFTW")
-        
-    #connect to calendar
-    cal = GCal4Ruby::Calendar.find(service, {:id => @@cal_id})
-    
     #find event to delete
-    event_g = GCal4Ruby::Event.find(service, {:id => @event.event_id})
+    event_g = GCal4Ruby::Event.find(@@service, {:id => @event.event_id})
     
     #this is broken: google events are kept after being deleted so need to 
     #find a way to see if event was deleted manually
@@ -171,7 +158,7 @@ class EventsController < ApplicationController
       puts "Was it manually deleted from calendar?"
     else
       event_g.delete
-      cal.save
+      @@cal.save
     end  
     #delete locally either way
     @event.destroy

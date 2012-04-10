@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @position.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @position.description %>
+</p>
+
+
+<!-- Commented Out Below -->
+<% #if false %>
+<td class="main">
+	<b>Users: </b>
+	<% unless @position.users.empty? %>
+		<table class="Users" summary="Users assigned to Position">
+			<%= render @users %>
+		</table>
+	<% end %>
+</td>
+<% #end %>
+
+
+
+<%= link_to 'Edit', edit_position_path(@position) %> |
+<%= link_to 'Back', positions_path %>

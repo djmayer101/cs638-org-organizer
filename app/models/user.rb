@@ -12,10 +12,13 @@ class User < ActiveRecord::Base
   has_many  :events
   validates :first_name,:presence=> true
   validates :last_name, :presence=> true
-end
 
 
-def new_random_password
-  self.password= Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--")[0,6]
-  self.password_confirmation = self.password
+
+  def self.generate_password(length=6)
+    chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ23456789'
+    password = ''
+    length.times { |i| password << chars[rand(chars.length)] }
+    return password
+  end
 end

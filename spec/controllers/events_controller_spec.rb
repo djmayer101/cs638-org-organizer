@@ -25,11 +25,11 @@ describe EventsController do
   # update the return value of this method accordingly.
   def valid_attributes
     {
-      :title => "Jon",
-      :description => "Jones",
-      :start_date => Time.now,
-      :end_date => Time.now,
-      :formality_lvl => "barf@barorama.com",
+      :title => "TestEvent",
+      :description => "Please come to this event",
+      :start_date => DateTime.now,
+      :end_date => DateTime.now,
+      :formality_lvl => "informal",
       :owner => 1,
       :location => "here"
       

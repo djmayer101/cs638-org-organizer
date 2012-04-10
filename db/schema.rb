@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20120410031408) do
     t.string   "formality_lvl"
     t.integer  "owner"
     t.string   "location"
+    t.string   "event_id"
   end
 
   create_table "position_assignments", :force => true do |t|

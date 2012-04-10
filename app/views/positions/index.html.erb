@@ -16,6 +16,9 @@
     <td><%= link_to 'Show', position %></td>
     <td><%= link_to 'Edit', edit_position_path(position) %></td>
     <td><%= link_to 'Destroy', position, confirm: 'Are you sure?', method: :delete %></td>
+    <!--This may be useful for selecting multiple users to have the same title.
+    	<td><input type="checkbox" name="myTextEditBox" value="unchecked" /> checkbox</td> -->
+
   </tr>
 <% end %>
 </table>
@@ -23,3 +26,4 @@
 <br />
 
 <%= link_to 'New Position', new_position_path %>
+

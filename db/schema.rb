@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120321221424) do
+ActiveRecord::Schema.define(:version => 20120408062038) do
 
   create_table "duties", :force => true do |t|
     t.string   "title"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20120321221424) do
     t.string   "formality_lvl"
     t.integer  "owner"
     t.string   "location"
+    t.string   "event_id"
   end
 
   create_table "position_assignments", :force => true do |t|

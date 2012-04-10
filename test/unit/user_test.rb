@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'spec_helper.rb' 
 
 class UserTest < ActiveSupport::TestCase
   fixtures :users

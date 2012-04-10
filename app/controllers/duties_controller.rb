@@ -2,7 +2,7 @@ class DutiesController < ApplicationController
   # GET /duties
   # GET /duties.json
   def index
-    @duties = Duty.all
+    @duties = Duty.all()
 
     respond_to do |format|
       format.html # index.html.erb

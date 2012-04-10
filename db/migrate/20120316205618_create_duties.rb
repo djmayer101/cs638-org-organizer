@@ -3,6 +3,7 @@ class CreateDuties < ActiveRecord::Migration
     create_table :duties do |t|
       t.string  :title
       t.text    :description
+      t.references :users
       t.timestamps
     end
   end

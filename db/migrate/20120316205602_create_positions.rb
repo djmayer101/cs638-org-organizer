@@ -7,4 +7,8 @@ class CreatePositions < ActiveRecord::Migration
       t.timestamps
     end
   end
+  
+  def down
+    drop_table :positions
+  end
 end

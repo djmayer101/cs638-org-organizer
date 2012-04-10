@@ -25,15 +25,20 @@
   </div>
   <div class="field">
     <%= f.label :assignee %><br />
-    <%= f.number_field :assignee %>
+    <%= f.collection_select :duty, :user_ids, User.find(:all, :order => :last_name), :id, :name, { :selected => @duty.user_ids }, { :multiple => true, :name => 'duty[user_ids][]' } %>
+    <!--
+    <%= assignee_name = "" %>
+    
+    <%= name = Array.new(assignee_name.split(' ')) %>
+    <%= User.where(:first_name => name[0], :last_name => name[1])%>
+    -->
   </div>
-  	<%= f.hidden_field :assigner, :value => current_user.id %>
-  <!--
+  
   <div class="field">
     <%= f.label :assigner %><br />
     <%= f.number_field :assigner %>
   </div>
-  -->
+
   <div class="field">
     <%= f.label :penalty %><br />
     <%= f.text_field :penalty %>

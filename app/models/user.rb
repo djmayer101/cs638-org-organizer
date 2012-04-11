@@ -6,14 +6,9 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :admin
-<<<<<<< HEAD
-  has_many  :positions, :through => :position_assignments
-  has_many  :duties_assigned, :class_name => "Duty"
-=======
-  #has_many  :positions, :through => :position_assignments
+
   has_many :positions
   has_many  :assigned_duties, :class_name => "Duty"
->>>>>>> 2f49c59fbd43678f8ead8f7ca212547416334211
   has_and_belongs_to_many  :duties
   has_many  :events
   validates :first_name,:presence=> true

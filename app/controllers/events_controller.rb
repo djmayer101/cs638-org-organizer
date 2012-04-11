@@ -153,7 +153,7 @@ class EventsController < ApplicationController
     
     #this is broken: google events are kept after being deleted so need to 
     #find a way to see if event was deleted manually
-    if event_g.title.casecmp("cancelled")==0
+    if event_g.status.eq(GCal4Ruby::Event::STATUS[:cancelled])
       puts "Error:  couldn't find event id: " + @event.event_id
       puts "Was it manually deleted from calendar?"
     else

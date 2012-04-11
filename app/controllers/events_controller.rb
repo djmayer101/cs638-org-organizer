@@ -100,12 +100,12 @@ class EventsController < ApplicationController
         
         #this is broken: google events are kept after being deleted so need to 
         #find a way to see if event was deleted manually
-        if event_g.nil?
-          puts "Error:  couldn't find event id: " + @event.event_id
+        if (event_g.status.to_s <=> 'canceled') == 0
+          puts "Warning:  couldn't find event id: " + @event.event_id
           puts "Was it manually deleted from calendar?"
           
-					if false
-          #create new?
+					#if false
+          #create new
           event_g = GCal4Ruby::Event.new(@@service)
           event_g.title = @event.title
           event_g.content = @event.description
@@ -121,7 +121,7 @@ class EventsController < ApplicationController
           @event.event_id = event_g.id
           @event.update_attributes(params[:event])
           @event.save
-          end
+          #end
         else
           #update event 
           event_g.title = @event.title
@@ -151,18 +151,22 @@ class EventsController < ApplicationController
     #find event to delete
     event_g = GCal4Ruby::Event.find(@@service, {:id => @event.event_id})
     
+    if !event_g.nil?
+    
     #this is broken: google events are kept after being deleted so need to 
     #find a way to see if event was deleted manually
-    if event_g.status.eq(GCal4Ruby::Event::STATUS[:cancelled])
-      puts "Error:  couldn't find event id: " + @event.event_id
-      puts "Was it manually deleted from calendar?"
+      if (event_g.status.to_s <=> 'canceled') == 0
+        puts "Error:  couldn't find event id: " + @event.event_id
+        puts "Was it manually deleted from calendar?"
+      else
+        event_g.delete
+        @@cal.save
+      end  
     else
-      event_g.delete
-      @@cal.save
-    end  
+    end
     #delete locally either way
     @event.destroy
-
+    
     respond_to do |format|
       format.html { redirect_to events_url }
       format.json { head :no_content }

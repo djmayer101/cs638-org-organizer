@@ -1,0 +1,25 @@
+<%= form_tag(assignment_duty_path(@duty)) do %>
+<table>
+	<tr>
+		<th>First name</th>
+		<th>Last name</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+	
+	<% @users.each do |user| %>
+	<tr>
+		<div class = field>
+		<td><%= user.first_name %></td>
+		<td><%= user.last_name %></td>
+		<td><%= check_box_tag("duty[user_ids][]", user.id, @duty.users.include?(user))%></td>
+		</div>
+	</tr>
+	<% end %>
+</table>
+<br />
+<div class="actions">
+	<%= submit_tag( "Submit") %>
+</div>
+<% end %>

@@ -15,14 +15,10 @@
   <%= @duty.deadline %>
 </p>
 
-<p>
-  <b>Assignee:</b>
-  <%= @duty.assignee %>
-</p>
 
 <p>
   <b>Assigner:</b>
-  <%= @duty.assigner %>
+  <%= @duty.user.first_name + ' ' + @duty.user.last_name %>
 </p>
 
 <p>

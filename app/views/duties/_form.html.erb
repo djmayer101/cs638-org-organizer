@@ -24,20 +24,9 @@
     <%= f.date_select :deadline %>
   </div>
   <div class="field">
-    <%= f.label :assignee %><br />
-    <%= f.collection_select :duty, :user_ids, User.find(:all, :order => :last_name), :id, :name, { :selected => @duty.user_ids }, { :multiple => true, :name => 'duty[user_ids][]' } %>
-    <!--
-    <%= assignee_name = "" %>
-    
-    <%= name = Array.new(assignee_name.split(' ')) %>
-    <%= User.where(:first_name => name[0], :last_name => name[1])%>
-    -->
-  </div>
-  
-  <div class="field">
-    <%= f.label :assigner %><br />
-    <%= f.number_field :assigner %>
-  </div>
+    <%= f.label :user_id %><br />
+    <%= f.select( :user_id, @assigner_select )%>
+  </div> 
 
   <div class="field">
     <%= f.label :penalty %><br />

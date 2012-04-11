@@ -9,27 +9,40 @@ class Admin::PositionsController < ApplicationController
       format.json { render json: @positions }
     end
   end
-
+  
+  def assigned   
+    params[:position][:user_ids] ||=[]
+    @position = Position.find(params[:id])
+    @position.user_ids = params[:position][:user_ids]
+    
+    respond_to do |format|
+      if @position.save
+          format.html { redirect_to admin_positions_path, notice: 'Position was successfully assigned!'}
+          format.json { render json: @position}  
+      else
+        format.html { render action: "assign" }
+        format.json { render json: @position.errors, status: :unprocessable_entity}
+      end
+    end
+  end
   # GET admin/positions/1/assign
   # GET admin/positions/1.json
   def assign
     @position = Position.find(params[:id])
     @users = User.order("last_name").all
     
-    
     respond_to do |format|
         format.html # assign.html.erb
         format.json {render json: @position}
     end
-    #redirect_to admin_positions_path
-    
+
   end
 
   # GET /positions/1
   # GET /positions/1.json
   def show
     @position = Position.find(params[:id])
-    #@users = @position.users
+    @userz = @position.users
 
     respond_to do |format|
       format.html # show.html.erb

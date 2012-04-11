@@ -40,12 +40,12 @@ class Admin::UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(params[:user])
+   @user = User.new(params[:user])
    @user.password = User.generate_password()
     respond_to do |format|
       if @user.save
         UserConfirmation.registration_email(@user).deliver
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to ([:admin, @user]), notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -61,7 +61,7 @@ class Admin::UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to [:admin, @user], notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

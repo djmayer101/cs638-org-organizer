@@ -10,6 +10,17 @@ class Admin::PositionsController < ApplicationController
     end
   end
 
+  # GET admin/positions/1/assign
+  # GET admin/positions/1.json
+  def assign
+    @position = Position.find(params[:id])
+    @users = User.all
+    
+    respond_to do |format|
+        format.html # assign.html.erb
+        format.json {render json: @position}
+    end
+  end
 
   # GET /positions/1
   # GET /positions/1.json
@@ -22,6 +33,7 @@ class Admin::PositionsController < ApplicationController
       format.json { render json: @position }
     end
   end
+
 
   # GET /positions/new
   # GET /positions/new.json
@@ -46,7 +58,7 @@ class Admin::PositionsController < ApplicationController
 
     respond_to do |format|
       if @position.save
-        format.html { redirect_to @position, notice: 'Position was successfully created.' }
+        format.html { redirect_to ([:admin ,@position]), notice: 'Position was successfully created.' }
         format.json { render json: @position, status: :created, location: @position }
       else
         format.html { render action: "new" }
@@ -75,9 +87,10 @@ class Admin::PositionsController < ApplicationController
   # DELETE /positions/1
   # DELETE /positions/1.json
   def destroy
-    @position = Position.find(params[:id])
-    @position.destroy
-
+    #@position = Position.find(params[:id])
+    #position.destroy
+    Position.destroy(params[:id])
+    
     respond_to do |format|
       format.html { redirect_to positions_url }
       format.json { head :no_content }

@@ -12,7 +12,7 @@
 
 
 <!-- Commented Out Below -->
-<% #if false %>
+<% if false %>
 <td class="main">
 	<b>Users: </b>
 	<% unless @position.users.empty? %>
@@ -21,9 +21,8 @@
 		</table>
 	<% end %>
 </td>
-<% #end %>
+<% end %>
 
 
-
-<%= link_to 'Edit', edit_position_path(@position) %> |
-<%= link_to 'Back', positions_path %>
+<%= link_to 'Edit', edit_admin_position_path(@position) %> |
+<%= link_to 'Back', admin_positions_path %>

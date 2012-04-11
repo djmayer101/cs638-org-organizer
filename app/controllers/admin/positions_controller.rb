@@ -42,8 +42,6 @@ class Admin::PositionsController < ApplicationController
   # GET /positions/1.json
   def show
     @position = Position.find(params[:id])
-    @userz = @position.users
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @position }

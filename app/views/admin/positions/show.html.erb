@@ -17,7 +17,8 @@
 	<b>Users Assigned: <br></b>
 	<% unless @position.users.empty? %>
 		<ul>
-			<% @position.users.each do |user| %>
+			
+			<% @position.users.order("last_name").each do |user| %>
 				<li><%=user.first_name%> <%=user.last_name %></li>	
 			<% end %>
 		</ul>

@@ -14,7 +14,7 @@ class Admin::PositionsController < ApplicationController
   # GET admin/positions/1.json
   def assign
     @position = Position.find(params[:id])
-    @users = User.all
+    @users = User.order("last_name").all
     
     respond_to do |format|
         format.html # assign.html.erb
@@ -75,7 +75,7 @@ class Admin::PositionsController < ApplicationController
     respond_to do |format|
       if @position.update_attributes(params[:position])
         
-        format.html { redirect_to @position, notice: 'Position was successfully updated.' }
+        format.html { redirect_to ([:admin ,@position]), notice: 'Position was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -92,7 +92,7 @@ class Admin::PositionsController < ApplicationController
     Position.destroy(params[:id])
     
     respond_to do |format|
-      format.html { redirect_to positions_url }
+      format.html { redirect_to admin_positions_url }
       format.json { head :no_content }
     end
   end

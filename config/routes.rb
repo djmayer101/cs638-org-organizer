@@ -4,12 +4,13 @@ Cs638OrgOrganizer::Application.routes.draw do
   resources :events
 
   resources :duties
-
-  resources :positions
-   
-  match 'admin/positions/:id/assign' => 'admin/positions#assign', :as => :assign_admin_position
   match 'duties/assign/:id' => 'duties#assign', :as => :assign_duty
   match 'duties/assignment/:id' => 'duties#assignment', :as => :assignment_duty
+
+  resources :positions
+  match 'admin/positions/:id/assigned' => 'admin/positions#assigned', :as => :assigned_admin_position
+  match 'admin/positions/:id/assign' => 'admin/positions#assign', :as => :assign_admin_position
+  
   resources :users
 
   namespace :admin do 

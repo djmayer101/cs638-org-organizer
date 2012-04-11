@@ -1,5 +1,6 @@
 <h1>Listing users to assign to <%= @position.title %></h1>
 
+<%= form_tag assigned_admin_position_path, :method => :put do %>
 <table>
   <tr>
     <th>First name</th>
@@ -13,9 +14,15 @@
   <tr>
     <td><%= user.first_name %></td>
     <td><%= user.last_name %></td>
-	<td><%= check_box_tag(:assigned) %><%= label_tag(:assigned, "") %></td>
+	<td><%= check_box_tag "position[user_ids][]", user.id, @position.users.include?(user)%></td>
   </tr>
 <% end %>
-
 </table>
+<%= submit_tag "GO!", :name => "assign"%>
 <br />
+<% end %>
+
+
+
+
+

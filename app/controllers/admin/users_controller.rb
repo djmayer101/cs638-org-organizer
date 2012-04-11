@@ -1,4 +1,8 @@
 class Admin::UsersController < ApplicationController
+before_filter :authenticate_user!
+ before_filter do 
+  redirect_to events_path unless current_user && current_user.admin?
+  end
  # GET /users
   # GET /users.json
   def index
@@ -41,10 +45,11 @@ class Admin::UsersController < ApplicationController
   # POST /users.json
   def create
    @user = User.new(params[:user])
-   @user.password = User.generate_password()
+  password = User.generate_password()
+  user.password = password
     respond_to do |format|
       if @user.save
-        UserConfirmation.registration_email(@user).deliver
+        UserConfirmation.registration_email(@user, password).deliver
         format.html { redirect_to ([:admin, @user]), notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else

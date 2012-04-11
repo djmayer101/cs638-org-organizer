@@ -6,7 +6,7 @@ describe "UserConfirmationMailer" do
   
 describe 'instructions' do
     let(:user) { mock_model(User, :first_name => 'Lucas', :email => 'lucas@email.com', :password => "1234abc") }
-    let(:mail) { UserConfirmation.registration_email(user) }
+    let(:mail) { UserConfirmation.registration_email(user, user.password) }
  
     #ensure that the subject is correct
     it 'renders the subject' do

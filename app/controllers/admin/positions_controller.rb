@@ -16,10 +16,13 @@ class Admin::PositionsController < ApplicationController
     @position = Position.find(params[:id])
     @users = User.order("last_name").all
     
+    
     respond_to do |format|
         format.html # assign.html.erb
         format.json {render json: @position}
     end
+    #redirect_to admin_positions_path
+    
   end
 
   # GET /positions/1

@@ -92,7 +92,7 @@ class Admin::PositionsController < ApplicationController
     Position.destroy(params[:id])
     
     respond_to do |format|
-      format.html { redirect_to positions_url }
+      format.html { redirect_to admin_positions_url }
       format.json { head :no_content }
     end
   end

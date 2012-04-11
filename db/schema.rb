@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(:version => 20120410230133) do
   end
 
   create_table "positions_users", :id => false, :force => true do |t|
-    t.integer "positions_id"
-    t.integer "users_id"
+    t.integer "position_id"
+    t.integer "user_id"
   end
 
   create_table "users", :force => true do |t|

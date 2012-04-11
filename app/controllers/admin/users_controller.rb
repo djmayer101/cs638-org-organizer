@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
  # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.order("last_name").all
 
     respond_to do |format|
       format.html # index.html.erb

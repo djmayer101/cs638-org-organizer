@@ -75,7 +75,7 @@ class Admin::PositionsController < ApplicationController
     respond_to do |format|
       if @position.update_attributes(params[:position])
         
-        format.html { redirect_to @position, notice: 'Position was successfully updated.' }
+        format.html { redirect_to ([:admin ,@position]), notice: 'Position was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

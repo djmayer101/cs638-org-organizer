@@ -9,31 +9,32 @@ class Admin::PositionsController < ApplicationController
       format.json { render json: @positions }
     end
   end
-  
-  def assigned   
-    params[:position][:user_ids] ||=[]
+
+  def assigned
+    params[:position][:user_ids] ||= []
     @position = Position.find(params[:id])
     @position.user_ids = params[:position][:user_ids]
-    
+
     respond_to do |format|
       if @position.save
-          format.html { redirect_to admin_positions_path, notice: 'Position was successfully assigned!'}
-          format.json { render json: @position}  
+        format.html { redirect_to admin_positions_path, notice: 'Position was successfully assigned!'}
+        format.json { render json: @position}
       else
         format.html { render action: "assign" }
         format.json { render json: @position.errors, status: :unprocessable_entity}
       end
     end
   end
+
   # GET admin/positions/1/assign
   # GET admin/positions/1.json
   def assign
     @position = Position.find(params[:id])
     @users = User.order("last_name").all
-    
+
     respond_to do |format|
-        format.html # assign.html.erb
-        format.json {render json: @position}
+      format.html # assign.html.erb
+      format.json {render json: @position}
     end
 
   end
@@ -48,7 +49,6 @@ class Admin::PositionsController < ApplicationController
     end
   end
 
-
   # GET /positions/new
   # GET /positions/new.json
   def new
@@ -59,7 +59,7 @@ class Admin::PositionsController < ApplicationController
       format.json { render json: @position }
     end
   end
-  
+
   # GET /positions/1/edit
   def edit
     @position = Position.find(params[:id])
@@ -88,7 +88,7 @@ class Admin::PositionsController < ApplicationController
 
     respond_to do |format|
       if @position.update_attributes(params[:position])
-        
+
         format.html { redirect_to ([:admin ,@position]), notice: 'Position was successfully updated.' }
         format.json { head :no_content }
       else
@@ -104,7 +104,7 @@ class Admin::PositionsController < ApplicationController
     #@position = Position.find(params[:id])
     #position.destroy
     Position.destroy(params[:id])
-    
+
     respond_to do |format|
       format.html { redirect_to admin_positions_url }
       format.json { head :no_content }

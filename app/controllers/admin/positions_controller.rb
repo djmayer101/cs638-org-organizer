@@ -1,4 +1,8 @@
 class Admin::PositionsController < ApplicationController
+ before_filter :authenticate_user!
+  before_filter do 
+  redirect_to events_path unless current_user && current_user.admin?
+  end
   # GET /positions
   # GET /positions.json
   def index
@@ -42,8 +46,6 @@ class Admin::PositionsController < ApplicationController
   # GET /positions/1.json
   def show
     @position = Position.find(params[:id])
-    @userz = @position.users
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @position }

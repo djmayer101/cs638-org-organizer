@@ -14,7 +14,7 @@ class Admin::PositionsController < ApplicationController
   # GET admin/positions/1.json
   def assign
     @position = Position.find(params[:id])
-    @users = User.all
+    @users = User.order("last_name").all
     
     respond_to do |format|
         format.html # assign.html.erb

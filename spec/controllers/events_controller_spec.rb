@@ -83,17 +83,23 @@ describe EventsController do
         expect {
           post :create, {:event => valid_attributes}, valid_session
         }.to change(Event, :count).by(1)
+	#cleanup google calendar
+	delete :destroy, {:id => Event.last.to_param}, valid_session
       end
 
       it "assigns a newly created event as @event" do
         post :create, {:event => valid_attributes}, valid_session
         assigns(:event).should be_a(Event)
         assigns(:event).should be_persisted
+	#cleanup google calendar
+	delete :destroy, {:id => Event.last.to_param}, valid_session
       end
 
       it "redirects to the created event" do
         post :create, {:event => valid_attributes}, valid_session
         response.should redirect_to(Event.last)
+	#cleanup google calendar
+	delete :destroy, {:id => Event.last.to_param}, valid_session
       end
     end
 
@@ -131,6 +137,8 @@ describe EventsController do
         event = Event.last
         put :update, {:id => event.to_param, :event => valid_attributes}, valid_session
         assigns(:event).should eq(event)
+	#cleanup google calendar
+	delete :destroy, {:id => event.to_param}, valid_session
       end
 
       it "redirects to the event" do
@@ -138,6 +146,8 @@ describe EventsController do
         event = Event.last
         put :update, {:id => event.to_param, :event => valid_attributes}, valid_session
         response.should redirect_to(event)
+	#cleanup google calendar
+	delete :destroy, {:id => event.to_param}, valid_session
       end
     end
 

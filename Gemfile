@@ -9,9 +9,11 @@ gem 'pg'
 gem 'thin'
 gem 'foreman'
 gem 'gcal4ruby'
-gem 'cover_me', '>=1.2.0', :group => :test
-
-
+group :test, :development do
+  gem 'cover_me', '>=1.2.0'
+  gem "factory_girl_rails", "~> 3.0"
+  gem 'rspec-rails'
+end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -26,8 +28,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'rspec-rails', :group => [:development, :test]
 gem "devise", ">= 2.0.4"
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

@@ -13,8 +13,11 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many  :duties
   has_many  :events
-  validates :first_name,:presence=> true
-  validates :last_name, :presence=> true
+  validates :first_name,:presence=> true,
+            :length => {:maximum => 254}
+  validates :last_name, :presence=> true,
+            :length => {:maximum => 254}
+  
 
 
 

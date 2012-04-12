@@ -127,13 +127,15 @@ describe EventsController do
       end
 
       it "assigns the requested event as @event" do
-        event = Event.create! valid_attributes
+	post :create, {:event => valid_attributes}, valid_session
+        event = Event.last
         put :update, {:id => event.to_param, :event => valid_attributes}, valid_session
         assigns(:event).should eq(event)
       end
 
       it "redirects to the event" do
-        event = Event.create! valid_attributes
+        post :create, {:event => valid_attributes}, valid_session
+        event = Event.last
         put :update, {:id => event.to_param, :event => valid_attributes}, valid_session
         response.should redirect_to(event)
       end
@@ -160,14 +162,16 @@ describe EventsController do
 
   describe "DELETE destroy" do
     it "destroys the requested event" do
-      event = Event.create! valid_attributes
+      post :create, {:event => valid_attributes}, valid_session
+      event = Event.last
       expect {
         delete :destroy, {:id => event.to_param}, valid_session
       }.to change(Event, :count).by(-1)
     end
 
     it "redirects to the events list" do
-      event = Event.create! valid_attributes
+      post :create, {:event => valid_attributes}, valid_session
+      event = Event.last
       delete :destroy, {:id => event.to_param}, valid_session
       response.should redirect_to(events_url)
     end

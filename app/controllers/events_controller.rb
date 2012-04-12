@@ -148,6 +148,10 @@ class EventsController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     
+    if @event.event_id.nil?
+      puts "bad event_id"
+    end
+    
     #find event to delete
     event_g = GCal4Ruby::Event.find(@@service, {:id => @event.event_id})
     

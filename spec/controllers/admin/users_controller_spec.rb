@@ -3,24 +3,24 @@ require 'spec_helper'
 describe Admin::UsersController do
 include Devise::TestHelpers
 
-  # This should return the minimal set of attributes required to create a valid
-  # User. As you add validations to User, be sure to
-  # update the return value of this method accordingly.
- login_user
+#Uses spec/support/controller_macros
+login_user
+ 
   
-
+  describe "Login /admin" do
+      it "Logs in an admin to system" do
+         user = FactoryGirl.create(:user)
+        visit admin_home_index_path    
+        fill_in "Email", :with => user.email
+        fill_in "Password", :with => user.password
+        click_button "Sign in"
+        page.should have_content("Admin Tools")
+      end
+ 
+     it "displays users in database" do
+       get :index, {}
+      page.should have_content("Bob")
   
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # UsersController. Be sure to keep this updated too.
-
-  
-
-  describe "GET index" do
-    it "assigns all users as @users" do
-       user = FactoryGirl.create(:user)
-      get :index, {} 
-      assigns(:users).should eq([user])
     end
   end
 
@@ -50,20 +50,23 @@ include Devise::TestHelpers
   describe "POST create" do
     describe "with valid params" do
       it "creates a new User" do
+        user = FactoryGirl.create(:user)
         expect {
-          post :create, {:user => valid_attributes}    
+          post :create, {:user => FactoryGirl.attributes_for(:user)
+}    
         }.to change(User, :count).by(1)
       end
 
       it "assigns a newly created user as @user" do
-        post :create, {:user => valid_attributes}  
+         
         assigns(:user).should be_a(User)
         assigns(:user).should be_persisted
       end
 
       it "redirects to the created user" do
-        post :create, {:user => valid_attributes}
-        response.should redirect_to(User.last)
+        post :create, {:user => FactoryGirl.attributes_for(:user)
+          }
+        response.should redirect_to(admin_users_url +"/"+ user.id)
       end
     end
 
@@ -98,14 +101,14 @@ include Devise::TestHelpers
 
       it "assigns the requested user as @user" do
          user = FactoryGirl.create(:user)
-        put :update, {:id => user.to_param, :user => valid_attributes} 
+        put :update, {:id => user.to_param, :user => FactoryGirl.attributes_for(:user)} 
         assigns(:user).should eq(user)
       end
 
       it "redirects to the user" do
          user = FactoryGirl.create(:user)
-        put :update, {:id => user.to_param, :user => valid_attributes}  
-        response.should redirect_to(user)
+        put :update, {:id => user.to_param, :user => FactoryGirl.attributes_for(:user)}  
+        response.should redirect_to(admin_user_url)
       end
     end
 
@@ -139,7 +142,7 @@ include Devise::TestHelpers
     it "redirects to the users list" do
        user = FactoryGirl.create(:user)
       delete :destroy, {:id => user.to_param}
-      response.should redirect_to(users_url)
+      response.should redirect_to(admin_users_url)
     end
   end
 

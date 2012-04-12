@@ -39,6 +39,11 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
+    configatron (2.9.0)
+      yamler (>= 0.1.0)
+    cover_me (1.2.0)
+      configatron
+      hashie
     daemons (1.1.8)
     devise (2.0.4)
       bcrypt-ruby (~> 3.0)
@@ -58,6 +63,7 @@ GEM
     gcal4ruby (0.5.5)
       gdata4ruby (>= 0.1.5)
     gdata4ruby (0.1.5)
+    hashie (1.2.0)
     hike (1.2.1)
     i18n (0.6.0)
     journey (1.0.3)
@@ -138,6 +144,7 @@ GEM
     warden (1.1.1)
       rack (>= 1.0)
     win32console (1.3.0-x86-mingw32)
+    yamler (0.1.0)
 
 PLATFORMS
   ruby
@@ -145,6 +152,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  cover_me (>= 1.2.0)
   devise (>= 2.0.4)
   foreman
   gcal4ruby

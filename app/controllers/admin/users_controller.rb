@@ -46,7 +46,7 @@ before_filter :authenticate_user!
   def create
    @user = User.new(params[:user])
   password = User.generate_password()
-  user.password = password
+  @user.password = password
     respond_to do |format|
       if @user.save
         UserConfirmation.registration_email(@user, password).deliver

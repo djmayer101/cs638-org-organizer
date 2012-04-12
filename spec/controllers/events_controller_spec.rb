@@ -185,6 +185,15 @@ describe EventsController do
       delete :destroy, {:id => event.to_param}, valid_session
       response.should redirect_to(events_url)
     end
-  end
 
+    it "fails to destroy the event since it doesn't exist" do
+      begin
+      	event = Event.create! valid_attributes
+      	delete :destroy, {:id => event.to_param}, valid_session
+      	response.should raise_error
+      rescue; end
+    end
+
+
+  end
 end

@@ -101,10 +101,9 @@ class EventsController < ApplicationController
         #this is broken: google events are kept after being deleted so need to 
         #find a way to see if event was deleted manually
         if (event_g.status.to_s <=> 'canceled') == 0
-          puts "Warning:  couldn't find event id: " + @event.event_id
-          puts "Was it manually deleted from calendar?"
+          #puts "Warning:  couldn't find event id: " + @event.event_id
+          #puts "Was it manually deleted from calendar?"
           
-					#if false
           #create new
           event_g = GCal4Ruby::Event.new(@@service)
           event_g.title = @event.title
@@ -149,7 +148,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     
     if @event.event_id.nil?
-      puts "bad event_id"
+      #puts "bad event_id"
     end
     
     #find event to delete
@@ -160,8 +159,8 @@ class EventsController < ApplicationController
     #this is broken: google events are kept after being deleted so need to 
     #find a way to see if event was deleted manually
       if (event_g.status.to_s <=> 'canceled') == 0
-        puts "Error:  couldn't find event id: " + @event.event_id
-        puts "Was it manually deleted from calendar?"
+        #puts "Error:  couldn't find event id: " + @event.event_id
+        #puts "Was it manually deleted from calendar?"
       else
         event_g.delete
         @@cal.save

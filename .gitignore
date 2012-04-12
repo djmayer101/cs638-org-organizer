@@ -1,3 +1,5 @@
 .autotest
 log/development.log
 tmp
+coverage.data
+coverage

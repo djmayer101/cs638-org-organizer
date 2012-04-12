@@ -153,13 +153,10 @@ class EventsController < ApplicationController
     #find event to delete
     event_g = GCal4Ruby::Event.find(@@service, {:id => @event.event_id})
     
-    if !event_g.nil?
-      if !((event_g.status.to_s <=> 'canceled') == 0)
-        event_g.delete
-        @@cal.save
-      end  
-    else
-    end
+    if !event_g.nil? && !((event_g.status.to_s <=> 'canceled') == 0)
+      event_g.delete 
+      @@cal.save
+    end  
     #delete locally either way
     @event.destroy
     
@@ -168,5 +165,4 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  #end
 end

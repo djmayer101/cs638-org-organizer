@@ -149,6 +149,14 @@ describe EventsController do
 	#cleanup google calendar
 	delete :destroy, {:id => event.to_param}, valid_session
       end
+
+      it "it creates a new gcal event since event didn't exist" do
+	event = Event.create! valid_attributes
+        put :update, {:id => event.to_param, :event => valid_attributes}, valid_session
+        response.should redirect_to(Event.last)
+	#cleanup google calendar
+	delete :destroy, {:id => event.to_param}, valid_session
+      end
     end
 
     describe "with invalid params" do

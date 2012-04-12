@@ -94,13 +94,12 @@ class EventsController < ApplicationController
         #OK to update locally first since event_id doesn't change
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
-        
+
         #find event to update
         event_g = GCal4Ruby::Event.find(@@service, {:id => @event.event_id})
         
-        #this is broken: google events are kept after being deleted so need to 
-        #find a way to see if event was deleted manually
-        if (event_g.status.to_s <=> 'canceled') == 0
+        #check if event is either null or canceled, if so create new
+        if @event.event_id.nil? || (event_g.status.to_s <=> 'canceled') == 0
           #puts "Warning:  couldn't find event id: " + @event.event_id
           #puts "Was it manually deleted from calendar?"
           
@@ -155,13 +154,7 @@ class EventsController < ApplicationController
     event_g = GCal4Ruby::Event.find(@@service, {:id => @event.event_id})
     
     if !event_g.nil?
-    
-    #this is broken: google events are kept after being deleted so need to 
-    #find a way to see if event was deleted manually
-      if (event_g.status.to_s <=> 'canceled') == 0
-        #puts "Error:  couldn't find event id: " + @event.event_id
-        #puts "Was it manually deleted from calendar?"
-      else
+      if !((event_g.status.to_s <=> 'canceled') == 0)
         event_g.delete
         @@cal.save
       end  

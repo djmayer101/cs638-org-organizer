@@ -6,6 +6,15 @@ FactoryGirl.define do
    last_name   "Dabolina"
    admin    true
   end
+
+  factory :duty, class: Duty do 
+   title	"my Duty"
+   description	"clean"
+   deadline	Date.today
+   user_id	0 #user_id_parm
+   penalty	"pay $5"
+   confirmation	false
+  end
   
   factory :position, class: Position do
       title "St8 Boss"

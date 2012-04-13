@@ -16,19 +16,16 @@ class Admin::PositionsController < ApplicationController
   end
 
   def assigned
-    #if params[:user_ids].nil?
-      #@position = Position.find(params[:id])
-      #@position.user_ids = nil
-     # redirect_to admin_positions_path, notice: 'Position was successfully assigned!'
-    #return
-   # end
+
     @position = Position.find(params[:id])
+    
     if params[:position].blank?
       @position.user_ids = []
       redirect_to admin_positions_path, notice: 'Position was successfully assigned!'
       return
     end
-    params[:position][:user_ids] ||=[]
+    
+    #params[:position][:user_ids] ||=[]
     @position.user_ids = params[:position][:user_ids]
 
     respond_to do |format|

@@ -94,9 +94,16 @@ class DutiesController < ApplicationController
   end
 
   def assignment
-    params[:duty][:user_ids] ||=[]
-
     @duty = Duty.find(params[:id])
+    
+    if params[:duty].blank?
+      @duty.user_ids = []
+      redirect_to @duty, notice: 'Duty was successfully assigned'
+      return
+    end
+  
+
+    #params[:duty][:user_ids] ||=[]
     @duty.user_ids = params[:duty][:user_ids]
     
     respond_to do |format|

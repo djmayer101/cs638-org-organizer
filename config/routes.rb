@@ -1,11 +1,11 @@
 Cs638OrgOrganizer::Application.routes.draw do
 
 
+  resources :inventoryitems
+
   devise_for :users
 
   resources :events
-
-  resources :inventoryitems
 
   resources :duties
   match 'duties/assign/:id' => 'duties#assign', :as => :assign_duty

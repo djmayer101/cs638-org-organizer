@@ -27,11 +27,9 @@ ActiveRecord::Schema.define(:version => 20120410230133) do
   add_index "duties", ["user_id"], :name => "index_duties_on_user_id"
 
   create_table "duties_users", :id => false, :force => true do |t|
-    t.integer "user_id"
     t.integer "duty_id"
+    t.integer "user_id"
   end
-
-  add_index "duties_users", ["user_id", "duty_id"], :name => "index_duties_users_on_user_id_and_duty_id"
 
   create_table "events", :force => true do |t|
     t.string   "title"

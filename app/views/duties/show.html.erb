@@ -22,6 +22,17 @@
 </p>
 
 <p>
+  <b>Assignee(s):</b>
+  <% unless @duty.users.empty? %>
+		<ul>
+  			<%  @duty.users.order("last_name").each do |user| %>
+				<li><%=user.first_name%> <%=user.last_name %></li>	
+			<% end %>
+		</ul>
+	<% end %>
+</p>
+
+<p>
   <b>Penalty:</b>
   <%= @duty.penalty %>
 </p>

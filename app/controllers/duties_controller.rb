@@ -86,7 +86,7 @@ class DutiesController < ApplicationController
 
   def assign
     @duty = Duty.find(params[:id])
-    @users = User.order('last_name ASC')
+    @users = User.order("last_name").all
     respond_to do |format|
       format.html # assign.html.erb
       format.json {render json: @duty}

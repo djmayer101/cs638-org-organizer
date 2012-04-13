@@ -2,7 +2,7 @@ require 'spec_helper'
 
 
 describe DutiesController do
-include Devise::TestHelpers
+  include Devise::TestHelpers
 
   def valid_attributes
     {
@@ -14,6 +14,9 @@ include Devise::TestHelpers
    	:confirmation => false
     }
   end
+  
+  #Uses spec/support/controller_macros
+  login_user
 
   describe "GET show" do
     it "assigns the requested duty as @duty" do

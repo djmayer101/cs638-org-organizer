@@ -14,6 +14,9 @@ describe EventsController do
     }
   end
 
+  #Uses spec/support/controller_macros
+  login_user
+
   describe "GET index" do
     it "assigns all events as @events" do
       event = Event.create! valid_attributes

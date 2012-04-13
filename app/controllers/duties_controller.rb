@@ -1,4 +1,5 @@
 class DutiesController < ApplicationController
+  #before_filter :authenticate_user!
   # GET /duties
   # GET /duties.json
   def index

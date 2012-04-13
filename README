@@ -8,3 +8,9 @@ rake db:create
 rake db:migrate
 rails s (our server is defaulted on http://0.0.0.0:3000
 Tests can be run using the command ‘bundle exec rssec spec/controllers’
+
+We require a user in order to use our web app, which can be created with the following commands:
+1. Type 'rails console' into the terminal
+2. use the following command: @user = User.new(:first_name => "Charles", :last_name => "Barkley", :email => "cbarkley@tnt.com", :password => "123456", :admin => 1)
+3. use command @user.save
+To login you will need the email and password (cbarkley@tnt.com password: 123456)

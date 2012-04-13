@@ -1,8 +1,9 @@
 class Admin::PositionsController < ApplicationController
- before_filter :authenticate_user!
-  before_filter do 
-  redirect_to events_path unless current_user && current_user.admin?
+  before_filter :authenticate_user!
+  before_filter do
+    redirect_to events_path unless current_user && current_user.admin?
   end
+
   # GET /positions
   # GET /positions.json
   def index
@@ -15,8 +16,19 @@ class Admin::PositionsController < ApplicationController
   end
 
   def assigned
-    params[:position][:user_ids] ||= []
+    #if params[:user_ids].nil?
+      #@position = Position.find(params[:id])
+      #@position.user_ids = nil
+     # redirect_to admin_positions_path, notice: 'Position was successfully assigned!'
+    #return
+   # end
     @position = Position.find(params[:id])
+    if params[:position].blank?
+      @position.user_ids = []
+      redirect_to admin_positions_path, notice: 'Position was successfully assigned!'
+      return
+    end
+    params[:position][:user_ids] ||=[]
     @position.user_ids = params[:position][:user_ids]
 
     respond_to do |format|

@@ -6,4 +6,9 @@ FactoryGirl.define do
    last_name   "Dabolina"
    admin    true
   end
+  
+  factory :position, class: Position do
+      title "St8 Boss"
+      description "This is the boss"
+  end
 end

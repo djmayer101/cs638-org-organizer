@@ -1,28 +1,21 @@
 <h1>Listing users to assign to <%= @position.title %></h1>
-
 <%= form_tag assigned_admin_position_path, :method => :put do %>
 <table>
-  <tr>
-    <th>First name</th>
-    <th>Last name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.first_name %></td>
-    <td><%= user.last_name %></td>
-	<td><%= check_box_tag "position[user_ids][]", user.id, @position.users.include?(user)%></td>
-  </tr>
-<% end %>
+	<tr>
+		<th>First name</th>
+		<th>Last name</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+	<% @users.each do |user| %>
+	<tr>
+		<td><%= user.first_name %></td>
+		<td><%= user.last_name %></td>
+		<td><%= check_box_tag "position[user_ids][]", user.id, @position.users.include?(user)%></td>
+	</tr>
+	<% end %>
 </table>
 <%= submit_tag "Assign", :name => "assign"%>
 <br />
-<% end %>
-
-
-
-
-
+<% end %> 

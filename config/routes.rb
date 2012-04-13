@@ -1,4 +1,8 @@
 Cs638OrgOrganizer::Application.routes.draw do
+
+
+  resources :inventoryitems
+
   devise_for :users
 
   resources :events

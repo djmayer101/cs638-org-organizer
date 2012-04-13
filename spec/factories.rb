@@ -15,4 +15,9 @@ FactoryGirl.define do
    penalty	"pay $5"
    confirmation	false
   end
+  
+  factory :position, class: Position do
+      title "St8 Boss"
+      description "This is the boss"
+  end
 end

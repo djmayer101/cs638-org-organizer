@@ -5,7 +5,6 @@ describe Admin::PositionsController do
 
   login_user
 
-
   describe "GET assign" do
     it "assigns the requested position as @position" do
       position = FactoryGirl.create(:position)
@@ -15,10 +14,29 @@ describe Admin::PositionsController do
   end
   
   describe "PUT assigned" do
-    it "assigns a position to a user" do
+    it "assigns a position to no users" do
       user = FactoryGirl.create(:user)
       position = FactoryGirl.create(:position)
       put :assigned, {:id => position.to_param, :user_ids => user.id}
+      response.should redirect_to(admin_positions_url)
+    end
+    
+    it "assigns a position to one user" do
+      user = FactoryGirl.create(:user)
+      position = FactoryGirl.create(:position)
+      position.user_ids = [1]
+      put :assigned, {:id => position.to_param}
+      response.should redirect_to(admin_positions_url)
+    end
+    
+    it "assigns a position to one user using params" do
+      user = FactoryGirl.create(:user)
+      position = FactoryGirl.create(:position)
+      
+      #@position = mock_model(Position)
+     # Position.stub!(user_ids).and_return
+      position.user_ids = user.id
+      put :assigned, {:id => position.to_param}
       response.should redirect_to(admin_positions_url)
     end
   end

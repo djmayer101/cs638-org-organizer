@@ -4,6 +4,16 @@ require 'spec_helper'
 describe DutiesController do
 include Devise::TestHelpers
 
+  def valid_attributes
+    {
+  	:title	=> 	"my Duty",
+   	:description => "clean",
+  	:deadline => 	Date.today,
+   	:user_id => 	0,
+   	:penalty => 	"pay $5",
+   	:confirmation => false
+    }
+  end
 
   describe "GET show" do
     it "assigns the requested duty as @duty" do
@@ -67,6 +77,33 @@ include Devise::TestHelpers
     end
   end
 
+  describe "PUT update" do
+    describe "with valid params" do
+      it "updates the requested duty" do
+	user = FactoryGirl.create(:user)
+        duty = FactoryGirl.create(:duty)
+	Duty.any_instance.should_receive(:update_attributes).with({'these' => 'params'})      
+        put :update, {:id => duty.to_param, :duty => {'these' => 'params'}}
+      end
+    end
+
+    describe "with invalid params" do
+      it "updates the requested duty" do
+	user = FactoryGirl.create(:user)
+        duty = FactoryGirl.create(:duty)
+	Duty.any_instance.should_receive(:update_attributes).with({'these' => 'params'})       
+        put :update, {:id => duty.to_param, :duty => {'these' => 'params'}} 
+      end
+    end
+
+    it "assigns the requested duty as @duty" do
+	user = FactoryGirl.create(:user)
+	post :create, {:duty => FactoryGirl.attributes_for(:duty)}
+        duty = Duty.last
+        put :update, {:id => duty.to_param, :duty => FactoryGirl.attributes_for(:duty)}
+        assigns(:duty).should eq(duty)
+      end
+  end
 
 
   describe "DELETE destroy" do

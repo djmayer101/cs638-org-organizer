@@ -1,13 +1,10 @@
-<h1>Listing inventoryitems</h1>
-
-<table>
+<h1>Inventory</h1>
+<br>
+<table border="1">
   <tr>
     <th>Name</th>
     <th>Cost</th>
     <th>Count</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @inventoryitems.each do |inventoryitem| %>
@@ -15,7 +12,6 @@
     <td><%= inventoryitem.name %></td>
     <td><%= inventoryitem.cost %></td>
     <td><%= inventoryitem.count %></td>
-    <td><%= link_to 'Show', inventoryitem %></td>
     <td><%= link_to 'Edit', edit_inventoryitem_path(inventoryitem) %></td>
     <td><%= link_to 'Destroy', inventoryitem, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
@@ -24,4 +20,4 @@
 
 <br />
 
-<%= link_to 'New Inventoryitem', new_inventoryitem_path %>
+<%= link_to 'Add Item', new_inventoryitem_path %>

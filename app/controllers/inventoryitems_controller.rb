@@ -44,7 +44,7 @@ class InventoryitemsController < ApplicationController
 
     respond_to do |format|
       if @inventoryitem.save
-        format.html { redirect_to @inventoryitem, notice: 'Inventoryitem was successfully created.' }
+        format.html { redirect_to @inventoryitem, notice: 'Item was successfully created.' }
         format.json { render json: @inventoryitem, status: :created, location: @inventoryitem }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class InventoryitemsController < ApplicationController
 
     respond_to do |format|
       if @inventoryitem.update_attributes(params[:inventoryitem])
-        format.html { redirect_to @inventoryitem, notice: 'Inventoryitem was successfully updated.' }
+        format.html { redirect_to @inventoryitem, notice: 'Item was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -1,29 +1,8 @@
-<%= form_for(@inventoryitem) do |f| %>
-  <% if @inventoryitem.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@inventoryitem.errors.count, "error") %> prohibited this inventoryitem from being saved:</h2>
-
-      <ul>
-      <% @inventoryitem.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :cost %><br />
-    <%= f.text_field :cost %>
-  </div>
-  <div class="field">
-    <%= f.label :count %><br />
-    <%= f.number_field :count %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for(@inventoryitem) do |f| %>
+ 	<%= f.error_notification %>
+	<%= f.input :name	%>
+	<%= f.input :cost   %>
+	<%= f.input :count  %>
+	<%= f.error :base %>
+	<%= f.button :submit %>
 <% end %>

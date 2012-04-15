@@ -1,26 +1,8 @@
-<%= form_for([:admin,@position]) do |f| %>
-  <% if @position.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@position.errors.count, "error") %> prohibited this position from being saved:</h2>
-
-      <ul>
-      <% @position.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  	
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<%= simple_form_for([:admin,@position]) do |f| %>
+	<%= f.error_notification %>
+	<%= f.input :title	%>
+	<%= f.input :description %>
+	<%= f.association :users, :label_method => lambda {|user| "#{user.first_name}  #{user.last_name}" }%>
+	<%= f.error :base %>
+	<%= f.button :submit %>
+<% end %> 

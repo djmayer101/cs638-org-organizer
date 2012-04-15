@@ -1,42 +1,10 @@
-<%= form_for(@duty) do |f| %>
-  <% if @duty.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@duty.errors.count, "error") %> prohibited this duty from being saved:</h2>
-
-      <ul>
-      <% @duty.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :deadline %><br />
-    <%= f.date_select :deadline %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.select( :user_id, @assigner_select )%>
-  </div> 
-
-  <div class="field">
-    <%= f.label :penalty %><br />
-    <%= f.text_field :penalty %>
-  </div>
-  <div class="field">
-    <%= f.label :confirmation %><br />
-    <%= f.check_box :confirmation %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for(@duty) do |f| %>
+<%= f.error_notification %>
+<%= f.input :title  %>
+<%= f.input :description %>
+<%= f.input :deadline %>
+<%= f.input :penalty %>
+<%= f.input :confirmation %>
+<%= f.error :base %>
+<%= f.button :submit %>
 <% end %>

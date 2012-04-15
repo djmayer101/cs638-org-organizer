@@ -2,6 +2,9 @@
 	<%= f.error_notification %>
 	<%= f.input :title	%>
 	<%= f.input :description %>
+	<%= f.input :addEvents %>
+	<%= f.input :addDuties %>
+	<%= f.input :addItems %>
 	<%= f.association :users, :label_method => lambda {|user| "#{user.first_name}  #{user.last_name}" }%>
 	<%= f.error :base %>
 	<%= f.button :submit %>

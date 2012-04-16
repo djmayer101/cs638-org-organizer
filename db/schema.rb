@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120413003006) do
+ActiveRecord::Schema.define(:version => 20120415064223) do
 
   create_table "duties", :force => true do |t|
     t.string   "title"
@@ -19,16 +19,22 @@ ActiveRecord::Schema.define(:version => 20120413003006) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.date     "deadline"
-    t.integer  "user_id"
+    t.integer  "assignee"
+    t.integer  "assigner"
     t.string   "penalty"
     t.boolean  "confirmation"
   end
 
-  add_index "duties", ["user_id"], :name => "index_duties_on_user_id"
-
   create_table "duties_users", :id => false, :force => true do |t|
-    t.integer "duty_id"
     t.integer "user_id"
+    t.integer "duty_id"
+  end
+
+  add_index "duties_users", ["user_id", "duty_id"], :name => "index_duties_users_on_user_id_and_duty_id"
+
+  create_table "duty_assignments", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "events", :force => true do |t|
@@ -52,11 +58,19 @@ ActiveRecord::Schema.define(:version => 20120413003006) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "position_assignments", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "positions", :force => true do |t|
     t.string   "title"
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "addEvents",   :default => false
+    t.boolean  "addDuties",   :default => false
+    t.boolean  "addItems"
   end
 
   create_table "positions_users", :id => false, :force => true do |t|

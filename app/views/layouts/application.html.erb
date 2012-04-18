@@ -23,8 +23,9 @@
 			<li><%= link_to 'Events', events_path %></li>
 			<li><%= link_to 'Duties', duties_path %></li>
 			<li><%= link_to 'Inventory', inventoryitems_path %></li>
-			<li><%= link_to 'Admin', :controller => 'admin/home' %></li>
-			
+			<% if current_user && current_user.admin == true%>
+				<li><%= link_to 'Admin', :controller => 'admin/home' %></li>
+			<% end%>
 		</ul>
 		<ul class="hmenu">
   			<%= render 'devise/menu/login_items' %>

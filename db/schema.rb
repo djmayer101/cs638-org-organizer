@@ -19,11 +19,12 @@ ActiveRecord::Schema.define(:version => 20120415064223) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.date     "deadline"
-    t.integer  "assignee"
-    t.integer  "assigner"
+    t.integer  "user_id"
     t.string   "penalty"
     t.boolean  "confirmation"
   end
+
+  add_index "duties", ["user_id"], :name => "index_duties_on_user_id"
 
   create_table "duties_users", :id => false, :force => true do |t|
     t.integer "user_id"
@@ -31,11 +32,6 @@ ActiveRecord::Schema.define(:version => 20120415064223) do
   end
 
   add_index "duties_users", ["user_id", "duty_id"], :name => "index_duties_users_on_user_id_and_duty_id"
-
-  create_table "duty_assignments", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "events", :force => true do |t|
     t.string   "title"
@@ -54,11 +50,6 @@ ActiveRecord::Schema.define(:version => 20120415064223) do
     t.string   "name"
     t.decimal  "cost"
     t.integer  "count"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "position_assignments", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -12,12 +12,23 @@
     <td><%= inventoryitem.name %></td>
     <td><%= inventoryitem.cost %></td>
     <td><%= inventoryitem.count %></td>
-    <td><%= link_to 'Edit', edit_inventoryitem_path(inventoryitem) %></td>
-    <td><%= link_to 'Destroy', inventoryitem, confirm: 'Are you sure?', method: :delete %></td>
+    <% @user = current_user %>
+    <% @permission = false %>
+    <% @user.positions.each do |pos|%>
+    	<%if pos.addItems == true%>
+    		<%@permission = true %>
+    	<% end %>
+    	
+    <%end%>
+    <% if @permission == true	%>
+    	<td><%= link_to 'Edit', edit_inventoryitem_path(inventoryitem) %></td>
+    	<td><%= link_to 'Destroy', inventoryitem, confirm: 'Are you sure?', method: :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'Add Item', new_inventoryitem_path %>
+ <% if @permission == true	%>
+	<%= link_to 'Add Item', new_inventoryitem_path %>
+  <% end %>

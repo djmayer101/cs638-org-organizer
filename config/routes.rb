@@ -14,7 +14,8 @@ Cs638OrgOrganizer::Application.routes.draw do
   resources :positions
   match 'admin/positions/:id/assigned' => 'admin/positions#assigned', :as => :assigned_admin_position
   match 'admin/positions/:id/assign' => 'admin/positions#assign', :as => :assign_admin_position
-  
+  match "profile" => "users#show"
+  match "users"   => redirect("/profile")
   resources :users
 
   namespace :admin do 

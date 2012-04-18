@@ -25,6 +25,9 @@
     		<%@permission = true %>
     	<% end %>
     <%end%>
+    <% if current_user.admin == true%>
+		<%@permission = true%>
+	<%end%>
     <% if @permission == true	%>
     	<td><%= link_to 'Assign', assign_duty_path(duty)%></td>
     	<td><%= link_to 'Show', duty %></td>

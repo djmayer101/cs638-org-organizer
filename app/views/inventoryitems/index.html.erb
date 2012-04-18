@@ -12,9 +12,8 @@
     <td><%= inventoryitem.name %></td>
     <td><%= inventoryitem.cost %></td>
     <td><%= inventoryitem.count %></td>
-    <% @user = current_user %>
     <% @permission = false %>
-    <% @user.positions.each do |pos|%>
+    <% current_user.positions.each do |pos|%>
     	<%if pos.addItems == true%>
     		<%@permission = true %>
     	<% end %>

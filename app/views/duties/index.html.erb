@@ -18,17 +18,27 @@
     <td><%= duty.user.first_name + ' ' + duty.user.last_name %> </td>
     <td><%= duty.penalty %></td>
     <td><%= duty.confirmation %></td>
-    <td><%= link_to 'Assign', assign_duty_path(duty)%></td>
-    <td><%= link_to 'Show', duty %></td>
-    <td><%= link_to 'Edit', edit_duty_path(duty) %></td>
-    <td><%= link_to 'Destroy', duty, confirm: 'Are you sure?', method: :delete %></td>
+    
+    <% @permission = false %>
+    <% current_user.positions.each do |pos|%>
+    	<%if pos.addDuty == true%>
+    		<%@permission = true %>
+    	<% end %>
+    <%end%>
+    <% if @permission == true	%>
+    	<td><%= link_to 'Assign', assign_duty_path(duty)%></td>
+    	<td><%= link_to 'Show', duty %></td>
+    	<td><%= link_to 'Edit', edit_duty_path(duty) %></td>
+    	<td><%= link_to 'Destroy', duty, confirm: 'Are you sure?', method: :delete %></td>
+  	<%end%>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Duty', new_duty_path %>
+<% if @permission == true	%>
+	<%= link_to 'New Duty', new_duty_path %>
+<%end%>
 <div id = "filter_duties_checkboxlist">
 <br />
 Filter By:

@@ -21,7 +21,7 @@
     
     <% @permission = false %>
     <% current_user.positions.each do |pos|%>
-    	<%if pos.addDuty == true%>
+    	<%if pos.addDuties == true%>
     		<%@permission = true %>
     	<% end %>
     <%end%>

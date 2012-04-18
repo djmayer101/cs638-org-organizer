@@ -11,6 +11,7 @@ gem 'foreman'
 gem 'gcal4ruby'
 gem 'capybara'
 gem 'simple_form'
+gem 'best_in_place'
 group :test, :development do
   gem 'cover_me', '>=1.2.0'
   gem "factory_girl_rails", "~> 3.0"

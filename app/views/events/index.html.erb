@@ -1,41 +1,50 @@
+<iframe src="https://www.google.com/calendar/embed?src=cs638khk%40gmail.com&ctz=America/Chicago"
+style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 
-<iframe src="https://www.google.com/calendar/embed?src=cs638khk%40gmail.com&ctz=America/Chicago" 
-			style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+<% @permission = false %>
+<% current_user.positions.each do |pos|%>
+	<%if pos.addEvent == true%>
+		<% @permission = true %>
+	<% end %>
+<%end%>
+
 <br />
 <br />
-
 <h1>Listing events</h1>
-
 <table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Start date</th>
- <!--   <th>End date</th>*/
-    <th>Formality lvl</th>
-    <th>Owner</th>
-    <th>Location</th> -->
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @events.each do |event| %>
-  <tr>
-    <td><%= event.title %></td>
-    <td><%= event.description %></td>
-    <td><%= event.start_date %></td>
- <!--     <td><%= event.end_date %></td>
-    <td><%= event.formality_lvl %></td>
-    <td><%= event.owner %></td>
-    <td><%= event.location %></td> -->
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+	<tr>
+		<th>Title</th>
+		<th>Description</th>
+		<th>Start date</th>
+		<!--   <th>End date</th>*/
+		<th>Formality lvl</th>
+		<th>Owner</th>
+		<th>Location</th> -->
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+	<% @events.each do |event| %>
+	<tr>
+		<td><%= event.title %></td>
+		<td><%= event.description %></td>
+		<td><%= event.start_date %></td>
+		<!--     <td><%= event.end_date %></td>
+		<td><%= event.formality_lvl %></td>
+		<td><%= event.owner %></td>
+		<td><%= event.location %></td> -->
+		<% if @permission == true	%>
+			<td><%= link_to 'Show', event %></td>
+			<td><%= link_to 'Edit', edit_event_path(event) %></td>
+			<td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
+		<%end%>
+	</tr>
+	<% end %>
 </table>
-
 <br />
 
+
+
+<% if @permission == true	%>
 <%= link_to 'New Event', new_event_path %>
+<%end%> 

@@ -10,9 +10,21 @@
   <%= @position.description %>
 </p>
 
+<p>
+	<b>Permissions:</b>
+	<ul>
+		<%if @position.addEvents%>
+			<li>Add Events</li>
+		<% end %>
+		<%if @position.addItems%>
+			<li>Add Items</li>
+		<%end%>
+		<%if @position.addDuties%>
+			<li>Add Duties</li>
+		<%end%>
+	</ul>
+</p>
 
-<!-- Commented Out Below -->
-<% #if false %>
 <td class="main">
 	<b>Users Assigned: <br></b>
 	<% unless @position.users.empty? %>
@@ -23,7 +35,7 @@
 		</ul>
 	<% end %>
 </td>
-<% #end %>
+
 
 
 <%= link_to 'Edit', edit_admin_position_path(@position) %> |

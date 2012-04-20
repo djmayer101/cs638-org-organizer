@@ -16,13 +16,13 @@
     <% if current_user.admin == true%>
 		<%@permission = true%>
 	<%end%>
-    <% if @permission == true	%>
+   
 <% @inventoryitems.each do |inventoryitem| %>
   <tr>
     <td><%= inventoryitem.name %></td>
     <td><%= inventoryitem.cost %></td>
     <td><%= inventoryitem.count %></td>
-  
+   <% if @permission == true	%>
     	<td><%= link_to 'Edit', edit_inventoryitem_path(inventoryitem) %></td>
     	<td><%= link_to 'Destroy', inventoryitem, confirm: 'Are you sure?', method: :delete %></td>
     <% end %>

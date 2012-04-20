@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
   #specify which calendar to use
   @@cal_id = "cs638khk@gmail.com"    #actual
   #@@cal_id = "tc3e71d7t5jm9a2q52j9tqepqo@group.calendar.google.com"   #dev

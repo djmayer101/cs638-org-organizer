@@ -1,27 +1,28 @@
 <h1>Inventory</h1>
 <br>
-<table border="1">
+<table class="Inventoryitem" border="1">
   <tr>
-    <th>Name</th>
-    <th>Cost</th>
-    <th>Count</th>
+    <th><%= sortable "name" %></th>
+    <th><%= sortable "cost" %></th>
+    <th><%= sortable "count" %></th>
   </tr>
-
-<% @inventoryitems.each do |inventoryitem| %>
-  <tr>
-    <td><%= inventoryitem.name %></td>
-    <td><%= inventoryitem.cost %></td>
-    <td><%= inventoryitem.count %></td>
-    <% @permission = false %>
+  <% @permission = false %>
     <% current_user.positions.each do |pos|%>
     	<%if pos.addItems == true%>
     		<%@permission = true %>
     	<% end %>
     <%end%>
+
     <% if current_user.admin == true%>
 		<%@permission = true%>
 	<%end%>
     <% if @permission == true	%>
+<% @inventoryitems.each do |inventoryitem| %>
+  <tr>
+    <td><%= inventoryitem.name %></td>
+    <td><%= inventoryitem.cost %></td>
+    <td><%= inventoryitem.count %></td>
+  
     	<td><%= link_to 'Edit', edit_inventoryitem_path(inventoryitem) %></td>
     	<td><%= link_to 'Destroy', inventoryitem, confirm: 'Are you sure?', method: :delete %></td>
     <% end %>

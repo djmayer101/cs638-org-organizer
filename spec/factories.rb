@@ -20,4 +20,10 @@ FactoryGirl.define do
       title "St8 Boss"
       description "This is the boss"
   end
+  
+  factory :inventoryitem, class: Inventoryitem do 
+   name  "key"
+   cost  1.55
+   count 4
+  end
 end

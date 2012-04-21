@@ -7,6 +7,15 @@ FactoryGirl.define do
    admin    true
   end
 
+  factory :event, class: Event do 
+   title		"my Event"
+   description	"fun things"
+   start_date 	DateTime.now
+   end_date 	DateTime.now.advance(:hours=>1)
+   formality_lvl	"formal"
+   location		"here"
+  end
+
   factory :duty, class: Duty do 
    title	"my Duty"
    description	"clean"

@@ -18,7 +18,7 @@ describe EventsController do
 
   describe "GET index" do
     it "assigns all events as @events" do
-      event = Event.create! valid_attributes
+	  event = FactoryGirl.create(:event)
       get :index, {}
       assigns(:events).should eq([event])
     end
@@ -26,7 +26,7 @@ describe EventsController do
 
   describe "GET show" do
     it "assigns the requested event as @event" do
-      event = Event.create! valid_attributes
+      event = FactoryGirl.create(:event)
       get :show, {:id => event.to_param}
       assigns(:event).should eq(event)
     end
@@ -41,7 +41,7 @@ describe EventsController do
 
   describe "GET edit" do
     it "assigns the requested event as @event" do
-      event = Event.create! valid_attributes
+      event = FactoryGirl.create(:event)
       get :edit, {:id => event.to_param}
       assigns(:event).should eq(event)
     end
@@ -93,7 +93,7 @@ describe EventsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested event" do
-        event = Event.create! valid_attributes
+        event = FactoryGirl.create(:event)
         # Assuming there are no other events in the database, this
         # specifies that the Event created on the previous line
         # receives the :update_attributes message with whatever params are
@@ -112,7 +112,7 @@ describe EventsController do
       end
 
       it "redirects to the event" do
-        post :create, {:event => valid_attributes}
+        post :create, {:event => FactoryGirl.attributes_for(:event)}
         event = Event.last
         put :update, {:id => event.to_param, :event => valid_attributes}
         response.should redirect_to(event)
@@ -121,7 +121,7 @@ describe EventsController do
       end
 
       it "it creates a new gcal event since event didn't exist" do
-	event = Event.create! valid_attributes
+	event = FactoryGirl.create(:event)
         put :update, {:id => event.to_param, :event => valid_attributes}
         response.should redirect_to(Event.last)
 	#cleanup google calendar
@@ -131,7 +131,7 @@ describe EventsController do
 
     describe "with invalid params" do
       it "assigns the event as @event" do
-        event = Event.create! valid_attributes
+        event = FactoryGirl.create(:event)
         # Trigger the behavior that occurs when invalid params are submitted
         Event.any_instance.stub(:save).and_return(false)
         put :update, {:id => event.to_param, :event => {}}
@@ -139,7 +139,7 @@ describe EventsController do
       end
 
       it "re-renders the 'edit' template" do
-        event = Event.create! valid_attributes
+        event = FactoryGirl.create(:event)
         # Trigger the behavior that occurs when invalid params are submitted
         Event.any_instance.stub(:save).and_return(false)
         put :update, {:id => event.to_param, :event => {}}
@@ -150,7 +150,7 @@ describe EventsController do
 
   describe "DELETE destroy" do
     it "destroys the requested event" do
-      post :create, {:event => valid_attributes}
+      post :create, {:event => FactoryGirl.attributes_for(:event)}
       event = Event.last
       expect {
         delete :destroy, {:id => event.to_param}
@@ -158,7 +158,7 @@ describe EventsController do
     end
 
     it "redirects to the events list" do
-      post :create, {:event => valid_attributes}
+      post :create, {:event => FactoryGirl.attributes_for(:event)}
       event = Event.last
       delete :destroy, {:id => event.to_param}
       response.should redirect_to(events_url)
@@ -166,7 +166,8 @@ describe EventsController do
 
     it "fails to destroy the event since it doesn't exist" do
       begin
-      	event = Event.create! valid_attributes
+      	event = FactoryGirl.create(:event)
+		delete :destroy, {:id => event.to_param}
       	delete :destroy, {:id => event.to_param}
       	response.should raise_error
       rescue; end

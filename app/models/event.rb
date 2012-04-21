@@ -1,9 +1,8 @@
 class Event <ActiveRecord::Base
-  belongs_to  :user
+  #belongs_to  :user
  # has_and_belongs_to_many :users
-  validates :title, :description, :location, :owner, :presence=> true
+  validates :title, :description, :location, :presence=> true
   validates :formality_lvl, :start_date, :end_date, :presence=> true
-  validates :owner, :numericality => true;
   
   validate :after_start_date
   

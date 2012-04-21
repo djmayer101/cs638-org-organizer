@@ -9,7 +9,6 @@ describe EventsController do
       :start_date => DateTime.now,
       :end_date => DateTime.now.advance(:hours=>1),
       :formality_lvl => "informal",
-      :owner => 1,
       :location => "here"
     }
   end

@@ -3,7 +3,11 @@ require 'spec_helper'
 describe InventoryitemsController do
 
   def valid_attributes
-    {}
+    {
+	  :name => "mykey",
+   	  :cost => 1.5,
+   	  :count => 5
+	}
   end
 
   login_user

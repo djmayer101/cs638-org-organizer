@@ -12,6 +12,7 @@ gem 'gcal4ruby'
 gem 'capybara'
 gem 'simple_form'
 gem 'best_in_place'
+gem 'will_paginate'
 group :test, :development do
   gem 'cover_me', '>=1.2.0'
   gem "factory_girl_rails", "~> 3.0"

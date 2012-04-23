@@ -20,7 +20,7 @@ describe DutiesController do
 
   describe "GET show" do
     it "assigns the requested duty as @duty" do
-      user = FactoryGirl.create(:user)
+ 
       duty = FactoryGirl.create(:duty)
       get :show, {:id => duty.to_param}
       assigns(:duty).should eq(duty)

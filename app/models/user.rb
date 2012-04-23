@@ -9,8 +9,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :positions
   
-  has_many  :duties_assigned, :class_name => "Duty"
-
+  has_many  :assigned_duties, :class_name => "Duty", :foreign_key => 'assigner_id'
   has_and_belongs_to_many  :duties
   has_many  :events
   validates :first_name,:presence=> true,

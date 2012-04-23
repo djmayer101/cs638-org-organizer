@@ -15,7 +15,6 @@ class DutiesController < ApplicationController
   # GET /duties/1.json
   def show
     @duty = Duty.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @duty }
@@ -26,8 +25,8 @@ class DutiesController < ApplicationController
   # GET /duties/new.json
   def new
     @duty = Duty.new
-    #@duty.user_id = current_user.id
-    @assigner_select = User.order('last_name ASC').collect{|s| [(s.first_name + " " + s.last_name), s.id]}
+   # @duty.user_id = current_user.id
+    #@assigner_select = User.order('last_name ASC').collect{|s| [(s.first_name + " " + s.last_name), s.id]}
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @duty }
@@ -44,7 +43,7 @@ class DutiesController < ApplicationController
   # POST /duties.json
   def create
     @duty = Duty.new(params[:duty])
-
+    @duty.assigned_user = current_user
     respond_to do |format|
       if @duty.save
         format.html { redirect_to @duty, notice: 'Duty was successfully created.' }

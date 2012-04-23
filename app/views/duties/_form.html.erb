@@ -5,6 +5,7 @@
 <%= f.input :deadline %>
 <%= f.input :penalty %>
 <%= f.input :confirmation %>
+<%= f.association :users, :label => "Assign to", :label_method => lambda {|user| "#{user.first_name}  #{user.last_name}" }%>
 <%= f.error :base %>
 <%= f.button :submit %>
 <% end %>

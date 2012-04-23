@@ -44,7 +44,10 @@ before_filter :authenticate_user!
   # POST /users
   # POST /users.json
   def create
-   @user = User.new(params[:user])
+   @user = User.new
+   #Need this to prevent mass assignment of Admin attribute, reference railscast #237
+   @user.accessible = :all if current_user.admin?
+   @user.attributes = params[:user]
   password = User.generate_password()
   @user.password = password
     respond_to do |format|
@@ -62,8 +65,9 @@ before_filter :authenticate_user!
   # PUT /users/1
   # PUT /users/1.json
   def update
+    #Preventing mass assignment of admin attribute unless the admin is adding a user w/ admin account
     @user = User.find(params[:id])
-
+    @user.accessible = :all if current_user.admin?
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to [:admin, @user], notice: 'User was successfully updated.' }

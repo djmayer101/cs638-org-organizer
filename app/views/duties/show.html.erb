@@ -16,13 +16,9 @@
 </p>
 
 
-<p>
-  <b>Assigner:</b>
-  <%= @duty.user.first_name + ' ' + @duty.user.last_name %>
-</p>
 
 <p>
-  <b>Assignee(s):</b>
+  <b>Assigned to:</b>
   <% unless @duty.users.empty? %>
 		<ul>
   			<%  @duty.users.order("last_name").each do |user| %>
@@ -31,6 +27,13 @@
 		</ul>
 	<% end %>
 </p>
+
+<p>
+  <b>Assigned by:</b>
+  <%= @duty.assigned_user.first_name + " "  + @duty.assigned_user.last_name %>
+</p>
+
+
 
 <p>
   <b>Penalty:</b>

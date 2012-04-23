@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
- before_filter do 
-  redirect_to events_path unless current_user && current_user.admin?
+
   end
  # GET /users
   # GET /users.json

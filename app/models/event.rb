@@ -5,7 +5,7 @@ class Event <ActiveRecord::Base
   validates :formality_lvl, :start_date, :end_date, :presence=> true
   
   validate :after_start_date
-  
+  attr_accessible :title, :description, :location, :formality_lvl, :start_date, :end_date
   def after_start_date
     errors.add :base, ("End Date must be after the Start Date") unless end_date.to_f > start_date.to_f
   end

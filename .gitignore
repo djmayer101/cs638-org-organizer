@@ -1,5 +1,5 @@
 .autotest
-log/development.log
+log
 tmp
 coverage.data
 coverage

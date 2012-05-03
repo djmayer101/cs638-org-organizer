@@ -32,7 +32,7 @@ describe InventoryitemsController do
       :count => -1
     }
   end
-  
+
   def invalid_count_decimal
     {
       :name => "name",
@@ -99,6 +99,30 @@ describe InventoryitemsController do
         Inventoryitem.any_instance.stub(:save).and_return(false)
         post :create, {:inventoryitem => {}}
         response.should render_template("new")
+      end
+
+      it "assigns an inventory item an empty string" do
+        expect {
+          post :create, {:inventoryitem => invalid_name}
+        }.to change(Inventoryitem, :count).by(0)
+      end
+
+      it "assigns an inventory item a negative cost" do
+        expect {
+          post :create, {:inventoryitem => invalid_cost}
+        }.to change(Inventoryitem, :count).by(0)
+      end
+
+      it "assigns an inventory item a negative count" do
+        expect {
+          post :create, {:inventoryitem => invalid_count_neg}
+        }.to change(Inventoryitem, :count).by(0)
+      end
+
+      it "assigns an inventory item a fractional count" do
+        expect {
+          post :create, {:inventoryitem => invalid_count_decimal}
+        }.to change(Inventoryitem, :count).by(0)
       end
     end
   end

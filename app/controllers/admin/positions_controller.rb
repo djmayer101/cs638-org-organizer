@@ -16,7 +16,7 @@ class Admin::PositionsController < ApplicationController
   end
 
   def assigned
-
+  
     @position = Position.find(params[:id])
     
     if params[:position].blank?
@@ -25,7 +25,7 @@ class Admin::PositionsController < ApplicationController
       return
     end
     
-    #params[:position][:user_ids] ||=[]
+    #This line was changed.    
     @position.user_ids = params[:position][:user_ids]
 
     respond_to do |format|

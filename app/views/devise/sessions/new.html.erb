@@ -1,17 +1,22 @@
+
+<div id = "error">
+<%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
+<%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
+<%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+</div>
+<br />
 <h2>Sign in</h2>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+	<%= f.error_notification %>
+	<%= f.input :email	%>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+	<%= f.input :password%>
+	
+    <%= f.check_box :remember_me %> <%= f.label :remember_me %>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
-
-  <div><%= f.submit "Sign in" %></div>
+  	<%= f.error :base %>
+	<%= f.button :submit, :label => "Sign In" %>
 <% end %>
 
 <%= render "links" %>

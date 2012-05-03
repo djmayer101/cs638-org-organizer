@@ -1,20 +1,51 @@
 require 'spec_helper'
 
 describe InventoryitemsController do
-
   def valid_attributes
     {
-	  :name => "mykey",
-   	  :cost => 1.5,
-   	  :count => 5
-	}
+      :name => "mykey",
+      :cost => 1.5,
+      :count => 5
+    }
+  end
+
+  def invalid_name
+    {
+      :name => "",
+      :cost => 1,
+      :count =>1
+    }
+  end
+
+  def invalid_cost
+    {
+      :name => "name",
+      :cost => -1,
+      :count => 1
+    }
+  end
+
+  def invalid_count_neg
+    {
+      :name => "name",
+      :cost => 1,
+      :count => -1
+    }
+  end
+  
+  def invalid_count_decimal
+    {
+      :name => "name",
+      :cost => 1,
+      :count =>1.5
+    }
   end
 
   login_user
 
   describe "GET show" do
     it "assigns the requested inventoryitem as @inventoryitem" do
-	  inventoryitem = FactoryGirl.create(:inventoryitem)
+      inventoryitem = FactoryGirl.create(:inventoryitem)
       get :show, {:id => inventoryitem.to_param}
       assigns(:inventoryitem).should eq(inventoryitem)
     end
@@ -57,14 +88,14 @@ describe InventoryitemsController do
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved inventoryitem as @inventoryitem" do
-        # Trigger the behavior that occurs when invalid params are submitted
+      # Trigger the behavior that occurs when invalid params are submitted
         Inventoryitem.any_instance.stub(:save).and_return(false)
         post :create, {:inventoryitem => {}}
         assigns(:inventoryitem).should be_a_new(Inventoryitem)
       end
 
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
+      # Trigger the behavior that occurs when invalid params are submitted
         Inventoryitem.any_instance.stub(:save).and_return(false)
         post :create, {:inventoryitem => {}}
         response.should render_template("new")
@@ -86,7 +117,7 @@ describe InventoryitemsController do
 
       it "assigns the requested inventoryitem as @inventoryitem" do
         inventoryitem = FactoryGirl.create(:inventoryitem)
-       put :update, {:id => inventoryitem.to_param, :inventoryitem => FactoryGirl.attributes_for(:inventoryitem)}
+        put :update, {:id => inventoryitem.to_param, :inventoryitem => FactoryGirl.attributes_for(:inventoryitem)}
         assigns(:inventoryitem).should eq(inventoryitem)
       end
 

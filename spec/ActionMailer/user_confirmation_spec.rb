@@ -20,7 +20,7 @@ describe 'instructions' do
  
     #ensure that the sender is correct
     it 'renders the sender email' do
-      mail.from.should == ['notifications@example.com']
+      mail.from.should == ['cs638khk@gmail.com']
     end
  
     #ensure that the @name variable appears in the email body
@@ -33,7 +33,7 @@ describe 'instructions' do
     end
     #ensure that the @confirmation_url variable appears in the email body
     it 'assigns @confirmation_url' do
-      mail.body.encoded.should match("http://example.com/login")
+      mail.body.encoded.should match("http://orgorganizer638.herokuapp.com/users/sign_in")
     end
   end
 end

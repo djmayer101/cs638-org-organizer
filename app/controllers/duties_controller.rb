@@ -25,7 +25,7 @@ class DutiesController < ApplicationController
   # GET /duties/new.json
   def new
     @duty = Duty.new
-   # @duty.user_id = current_user.id
+    # @duty.user_id = current_user.id
     #@assigner_select = User.order('last_name ASC').collect{|s| [(s.first_name + " " + s.last_name), s.id]}
     respond_to do |format|
       format.html # new.html.erb
@@ -46,10 +46,14 @@ class DutiesController < ApplicationController
     @duty.assigned_user = current_user
     respond_to do |format|
       if @duty.save
+          @duty.user_ids.each do |user_id|
+          @user1 = User.find(user_id)
+          DutyAssignment.assignment_email(@user1, @duty.assigned_user, @duty).deliver
+        end
         format.html { redirect_to @duty, notice: 'Duty was successfully created.' }
         format.json { render json: @duty, status: :created, location: @duty }
       else
-        #@duty.user_id = current_user.id
+      #@duty.user_id = current_user.id
         @assigner_select = User.order('last_name ASC').collect{|s| [(s.first_name + " " + s.last_name), s.id]}
         format.html { render action: "new" }
         format.json { render json: @duty.errors, status: :unprocessable_entity }
@@ -97,23 +101,22 @@ class DutiesController < ApplicationController
 
   def assignment
     @duty = Duty.find(params[:id])
-    
+    @users = User.order("last_name").all
     if params[:duty].blank?
       @duty.user_ids = []
       redirect_to @duty, notice: 'Duty was successfully assigned'
-      return
+    return
     end
-  
 
     #params[:duty][:user_ids] ||=[]
     @duty.user_ids = params[:duty][:user_ids]
-    
+
     respond_to do |format|
       if @duty.save
         format.html { redirect_to @duty, notice: 'Duty was successfully assigned.' }
         format.json { render json: @duty}
       else
-        format.html { render action: "assign" }
+        format.html { render action: "index" }
         format.json { render json: @duty.errors, status: :unprocessable_entity }
       end
     end

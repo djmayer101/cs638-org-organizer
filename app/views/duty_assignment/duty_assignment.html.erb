@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1> Dear <%= @user.first_name %>, </h1>
+    <p>
+      You have been assigned a new duty by <%= @assigned_by.first_name%> <%= @assigned_by.last_name %> 
+      which can be viewed at <%= @url %>.
+    </p>
+    <p>
+    Summary of duty:
+    Title: <%= @duty.title %>
+    Description: <%= @duty.description%>
+    Due Date is set for <%= @duty.deadline %>
+    </p>
+    <p></p>
+  </body>
+</html>
+
+

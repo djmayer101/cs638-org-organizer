@@ -17,7 +17,11 @@ Cs638OrgOrganizer::Application.routes.draw do
   match "profile" => "users#show"
   match "users"   => redirect("/profile")
   resources :users
+  match '/change_password' => 'users#change_password', :as => :change_password
+  match '/change_password_update' => 'users#change_password_update', :as => :change_password_update
+  resources :users, :controller => 'users', :collection => {:change_password_update => :put}
 
+  resources :settings
   namespace :admin do 
       resources :admin
       resources :users

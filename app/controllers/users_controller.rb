@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-
-  
- # GET /users
+  # GET /users
   # GET /users.json
   def index
     @users = User.order("last_name").all
@@ -39,26 +37,21 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-
-
-  # PUT /users/1
-  # PUT /users/1.json
-respond_to :html, :json
-def update
-  @user = User.find(params[:id])
-  @user.update_attributes(params[:user])
-  respond_with @user
-end
-
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to admin_users_url }
-      format.json { head :no_content }
-    end
+  #
+  # Change user passowrd
+  def change_password
+    @user = User.find(current_user.id)
+  
   end
+
+  #
+  # Change user passowrd
+  def change_password_update
+      @user = User.find(current_user.id)
+      sign_out @user
+      @user.send_reset_password_instructions
+      flash[:notice] = t('devise.passwords.send_instructions') 
+      redirect_to "/profile"
+    end
+
 end

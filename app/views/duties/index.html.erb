@@ -12,24 +12,31 @@
 		<%@permission = true%>
 	<%end%>
 
+
+	Sort By:
+	<%= sort_link @search, :title %> | 
+	<%= sort_link @search, :deadline %> | 
+	<%= sort_link @search, :assigner %>
+
+
 <br>
 <table border="1">
   <tr>
     <th>Title</th>
     <th>Description</th>
  	<th>Deadline</th>
+ 	<th>Status</th>
     <th>Assigner</th>
     <th>Penalty</th>
-    <th>Confirmation</th>
   </tr>
 <% @duties.each do |duty| %>
   <tr>
     <td><%= duty.title %></td>
     <td><%= duty.description %></td>
     <td><%= duty.deadline %></td>
+    <td><%= duty.status %></td>
     <td><%= duty.assigned_user.first_name + " " + duty.assigned_user.last_name %></td>
     <td><%= duty.penalty %></td>
-    <td><%= duty.confirmation %></td>
     
     
     <% if @permission == true	%>
@@ -54,14 +61,14 @@ Search:
 <br />
 <%= form_for @search do |f| %>
 	<p>
-	<%= f.label :title_contains %>
-	<%= f.text_field :title_contains %>	
+	<%= f.label :title_or_description_contains %>
+	<%= f.text_field :title_or_description_contains %>	
 	</br>
 	<%= f.label :deadline_greater_than_or_equal_to, "Deadline Between"%>
-	<%= f.date_select :deadline_greater_than_or_equal_to %>
+	<%= f.date_select :deadline_greater_than_or_equal_to, {:include_blank => true, :default => nil } %>
 
 	<%= f.label :deadline_less_than_or_equal_to, " and " %>
-	<%= f.date_select :deadline_less_than_or_equal_to %>
+	<%= f.date_select :deadline_less_than_or_equal_to, { :include_blank => true, :default => nil }%>
 	</br>
 	</p>
 	<p class="button"><%= f.submit "Search" %></p>

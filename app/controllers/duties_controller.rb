@@ -2,6 +2,7 @@ class DutiesController < ApplicationController
   #before_filter :authenticate_user!
   # GET /duties
   # GET /duties.json
+  
   def index
     @search = Duty.search(params[:search])
     @duties = @search.all()

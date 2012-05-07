@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120423045356) do
+ActiveRecord::Schema.define(:version => 20120507205019) do
 
   create_table "duties", :force => true do |t|
     t.string   "title"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20120423045356) do
     t.string   "penalty"
     t.boolean  "confirmation"
     t.integer  "assigner_id"
+    t.integer  "status"
   end
 
   add_index "duties", ["user_id"], :name => "index_duties_on_user_id"

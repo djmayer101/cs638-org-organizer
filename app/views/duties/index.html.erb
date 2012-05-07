@@ -50,6 +50,13 @@ Search:
 	<p>
 	<%= f.label :title_contains %>
 	<%= f.text_field :title_contains %>	
+	</br>
+	<%= f.label :deadline_greater_than_or_equal_to, "Deadline Between"%>
+	<%= f.date_select :deadline_greater_than_or_equal_to %>
+
+	<%= f.label :deadline_less_than_or_equal_to, " and " %>
+	<%= f.date_select :deadline_less_than_or_equal_to %>
+	</br>
 	</p>
 	<p class="button"><%= f.submit "Search" %></p>
 	<%end%>

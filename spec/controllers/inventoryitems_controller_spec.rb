@@ -37,7 +37,7 @@ describe InventoryitemsController do
     {
       :name => "name",
       :cost => 1,
-      :count =>1.5
+      :count =>-1.5
     }
   end
 

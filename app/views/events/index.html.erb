@@ -24,7 +24,8 @@ style="border: 0" width="600" height="450" frameborder="0" scrolling="no"></ifra
 <br />
 
 <h1>Listing events</h1>
-<table>
+<br />
+<table border="1">
 	<tr>
 		<th>Title</th>
 		<th>Start Date</th>
@@ -53,6 +54,26 @@ style="border: 0" width="600" height="450" frameborder="0" scrolling="no"></ifra
 <%= link_to 'New Event', new_event_path %>
 <%end%> 
 	</div>
+<div id = "filter_duties_checkboxlist">
+<br />
+Search:
+<br />
+<%= form_for @search do |f| %>
+	<p>
+	<%= f.label :title_contains %>
+	<%= f.text_field :title_contains %>	
+	</br>
+	<%= f.label :start_date_greater_than_or_equal_to, "Start Date Between"%>
+	<%= f.date_select :start_date_greater_than_or_equal_to %>
+
+	<%= f.label :start_date_less_than_or_equal_to, " and " %>
+	<%= f.date_select :start_date_less_than_or_equal_to %>
+	</br>
+	</p>
+	<p class="button"><%= f.submit "Search" %></p>
+	<%end%>
+
+</div>
 		</td>
 	</tr>
 </table>

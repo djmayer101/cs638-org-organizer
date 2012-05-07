@@ -16,7 +16,9 @@ class EventsController < ApplicationController
   # GET /events.json
 #  if current_user.try(:admin?)
   def index
-    @events = Event.all
+		@search = Event.search(params[:search])
+		@events = @search.all()
+#    @events = Event.all
 
     respond_to do |format|
       format.html # index.html.erb

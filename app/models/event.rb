@@ -5,7 +5,7 @@ class Event <ActiveRecord::Base
   validates :formality_lvl, :start_date, :end_date, :presence=> true
 
 	validates :start_date,
-  	:date => { :after => DateTime.now }
+  	:date => { :after => DateTime.now - 1.minute }
 
 	validates :end_date,
   	:date => { :after => :start_date } 

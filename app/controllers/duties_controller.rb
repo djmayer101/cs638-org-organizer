@@ -3,7 +3,9 @@ class DutiesController < ApplicationController
   # GET /duties
   # GET /duties.json
   
+  
   def index
+    @status = ["Active", "Failed", "Complete"]
     @search = Duty.search(params[:search])
     @duties = @search.all()
 

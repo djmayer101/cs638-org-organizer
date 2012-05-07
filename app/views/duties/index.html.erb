@@ -34,7 +34,7 @@
     <td><%= duty.title %></td>
     <td><%= duty.description %></td>
     <td><%= duty.deadline %></td>
-    <td><%= duty.status %></td>
+    <td><%= @status[duty.status] %></td>
     <td><%= duty.assigned_user.first_name + " " + duty.assigned_user.last_name %></td>
     <td><%= duty.penalty %></td>
     

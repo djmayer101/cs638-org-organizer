@@ -6,5 +6,5 @@ class Duty < ActiveRecord::Base
 
 	validates :deadline,
   	:date => { :after => DateTime.now - 1.day }
-  attr_accessible :title, :description, :deadline, :penalty, :confirmation, :user_ids, :assigned_user_id
+  attr_accessible :title, :description, :deadline, :penalty, :confirmation, :user_ids, :assigned_user_id, :status
 end

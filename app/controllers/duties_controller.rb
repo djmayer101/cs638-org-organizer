@@ -2,7 +2,10 @@ class DutiesController < ApplicationController
   #before_filter :authenticate_user!
   # GET /duties
   # GET /duties.json
+  
+  
   def index
+    @status = ["Active", "Failed", "Complete"]
     @search = Duty.search(params[:search])
     @duties = @search.all()
 
@@ -15,6 +18,7 @@ class DutiesController < ApplicationController
   # GET /duties/1
   # GET /duties/1.json
   def show
+    @status = ["Active", "Failed", "Complete"]
     @duty = Duty.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb

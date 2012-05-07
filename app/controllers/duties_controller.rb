@@ -3,7 +3,8 @@ class DutiesController < ApplicationController
   # GET /duties
   # GET /duties.json
   def index
-    @duties = Duty.all()
+    @search = Duty.search(params[:search])
+    @duties = @search.all()
 
     respond_to do |format|
       format.html # index.html.erb

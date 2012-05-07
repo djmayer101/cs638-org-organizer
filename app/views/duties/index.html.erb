@@ -1,5 +1,17 @@
 
 <h1>Listing duties</h1>
+<div>
+
+<% @permission = false %>
+    <% current_user.positions.each do |pos|%>
+    	<%if pos.addDuties == true%>
+    		<%@permission = true %>
+    	<% end %>
+    <%end%>
+    <% if current_user.admin == true%>
+		<%@permission = true%>
+	<%end%>
+
 <br>
 <table border="1">
   <tr>
@@ -19,15 +31,7 @@
     <td><%= duty.penalty %></td>
     <td><%= duty.confirmation %></td>
     
-    <% @permission = false %>
-    <% current_user.positions.each do |pos|%>
-    	<%if pos.addDuties == true%>
-    		<%@permission = true %>
-    	<% end %>
-    <%end%>
-    <% if current_user.admin == true%>
-		<%@permission = true%>
-	<%end%>
+    
     <% if @permission == true	%>
     	<td><%= link_to 'Assign', assign_duty_path(duty)%></td>
     	<td><%= link_to 'Show', duty %></td>
@@ -39,9 +43,11 @@
 </table>
 
 <br />
+
 <% if @permission == true	%>
 	<%= link_to 'New Duty', new_duty_path %>
 <%end%>
+</div>
 <div id = "filter_duties_checkboxlist">
 <br />
 Search:

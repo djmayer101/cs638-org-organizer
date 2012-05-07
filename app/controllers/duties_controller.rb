@@ -18,6 +18,7 @@ class DutiesController < ApplicationController
   # GET /duties/1
   # GET /duties/1.json
   def show
+    @status = ["Active", "Failed", "Complete"]
     @duty = Duty.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb

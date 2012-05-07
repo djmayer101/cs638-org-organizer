@@ -16,14 +16,6 @@ describe EventsController do
   #Uses spec/support/controller_macros
   login_user
 
-  describe "GET index" do
-    it "assigns all events as @events" do
-	  event = FactoryGirl.create(:event)
-      get :index, {}
-      assigns(:events).should eq([event])
-    end
-  end
-
   describe "GET show" do
     it "assigns the requested event as @event" do
       event = FactoryGirl.create(:event)

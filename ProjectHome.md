@@ -1,0 +1,1 @@
+Ruby on Rails web app to help manage and administer Student Organization's users and activities
